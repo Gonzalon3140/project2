@@ -7,6 +7,11 @@ var db = require("./models");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
+//authentication
+var authRoutes = require("./routes/authRoutes");
+var passportSetup = require("./config/oAuth");
+app.use("/auth",authRoutes);
+
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

@@ -1,5 +1,9 @@
 var db = require("../models");
 
+// These are really AUTHORIZATION requirements - should move to authRoutes.js
+// var passport = require("passport");
+// These are really AUTHORIZATION requirements - should move to authRoutes.js
+
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
@@ -12,19 +16,23 @@ module.exports = function(app) {
   });
 
   // These are really AUTHORIZATION ROUTES - should move to authRoutes.js
-  app.get("/login", function(req, res) {
-    res.render("login");
-  });
-  app.get("/google", function(req, res) {
-    //handle with passport
-    res.send("Logging in with Google...");
-  });
-  app.get("/logout", function(req, res) {
-    //handle with passport
-    res.send("Logging out...");
-  });
-  // These are really AUTHORIZATION ROUTES - should move to authRoutes.js
+  // app.get("/login", function(req, res) {
+  //   res.render("login");
+  // });
+  
+  // app.get("/google", passport.authenticate("google",{
+  //   scope:["profile"]
+  // }));
 
+  // app.get("/logout", function(req, res) {
+  //   //handle with passport
+  //   res.send("Logging out...");
+  // });
+
+  // app.get("/google/redirect", function(req,res){
+
+  // });
+  // These are really AUTHORIZATION ROUTES - should move to authRoutes.js
 
 
   // Load example page and pass in an example by id
