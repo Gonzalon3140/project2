@@ -11,6 +11,22 @@ module.exports = function(app) {
     });
   });
 
+  // These are really AUTHORIZATION ROUTES - should move to authRoutes.js
+  app.get("/login", function(req, res) {
+    res.render("login");
+  });
+  app.get("/google", function(req, res) {
+    //handle with passport
+    res.send("Logging in with Google...");
+  });
+  app.get("/logout", function(req, res) {
+    //handle with passport
+    res.send("Logging out...");
+  });
+  // These are really AUTHORIZATION ROUTES - should move to authRoutes.js
+
+
+
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
     db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
