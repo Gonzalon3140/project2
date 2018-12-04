@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "password",
-    "database": "exampledb",
+    "database": "nexdoordb",
     "host": "localhost",
     "dialect": "mysql",
     "port": 3306
