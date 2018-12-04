@@ -8,30 +8,7 @@ module.exports = function(app) {
     //unless logged in, then refer to main
   });
 
-  // Load your page with all your posts and all of the most recent posts
-  app.get("/:zip", function(req, res) {
-    // get all user posts
-    db.Posts.findAll({ where: { zip: req.params.zip } /* && limited by most recent */}).then(function(userposts) {
-      res.render("main", {
-        userfeed: userposts
-      });
-    });
-    // get all recent posts in user region
-    db.Posts.findAll({ where: { zip: req.params.zip } /* && limited by most recent */}).then(function(recent) {
-      res.render("main", {
-        localfeed: recent
-      });
-    });
-  });
 
-  // Load Category page containing all posts
-  app.get("/:zip/:category", function(req, res) {
-    db.Posts.findAll({ where: { category: req.params.category }, [Op.and]: { zip: req.params.zip } }).then(function(resPosts) {
-      res.render("Category", {
-        category: resPosts
-      });
-    });
-  });
 
 
   // Render 404 page for any unmatched routes
