@@ -19,7 +19,7 @@ module.exports = function(app) {
   // app.get("/login", function(req, res) {
   //   res.render("login");
   // });
-  
+
   // app.get("/google", passport.authenticate("google",{
   //   scope:["profile"]
   // }));
@@ -34,10 +34,11 @@ module.exports = function(app) {
   // });
   // These are really AUTHORIZATION ROUTES - should move to authRoutes.js
 
-
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
+    db.Example.findOne({ where: { id: req.params.id } }).then(function(
+      dbExample
+    ) {
       res.render("example", {
         example: dbExample
       });
