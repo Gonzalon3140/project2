@@ -5,35 +5,21 @@ var db = require("../models");
 // These are really AUTHORIZATION requirements - should move to authRoutes.js
 
 module.exports = function(app) {
-  // Load index page
+  // Load index/log-in page
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "Welcome!",
-        examples: dbExamples
-      });
-    });
+    res.render("index");  
   });
 
-  // These are really AUTHORIZATION ROUTES - should move to authRoutes.js
-  // app.get("/login", function(req, res) {
-  //   res.render("login");
-  // });
+  // Load signup page
+  app.get("/signup", function(req, res) {
+    res.render("signup");
+  });
 
-  // app.get("/google", passport.authenticate("google",{
-  //   scope:["profile"]
-  // }));
-
-  // app.get("/logout", function(req, res) {
-  //   //handle with passport
-  //   res.send("Logging out...");
-  // });
-
-  // app.get("/google/redirect", function(req,res){
-
-  // });
-  // These are really AUTHORIZATION ROUTES - should move to authRoutes.js
-
+  // Load home page
+  app.get("/home", function(req, res) {
+    res.render("home");
+  });
+   
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
     db.Example.findOne({ where: { id: req.params.id } }).then(function(
