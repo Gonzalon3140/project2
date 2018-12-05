@@ -17,11 +17,18 @@ body {
   align-content: center;
 }
 
-.home {
+div.container.home {
   background-color: lightsalmon; 
+  padding: 20px;
+  margin: 20px;
 }
 
 .header {
   width: 100px;
   height: 300px;
+  border: solid 1px;
+}
+
+.col, .col-5 {
+  padding:20px;
 }
