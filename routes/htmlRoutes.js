@@ -11,7 +11,7 @@ module.exports = function(app) {
   });
 
   // Load signup page
-  app.get("/signup", function(req, res) {
+  app.get("/auth/signup", function(req, res) {
     res.render("signup");
   });
 
