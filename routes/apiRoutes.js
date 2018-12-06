@@ -5,6 +5,7 @@ module.exports = function(app) {
 
   // LOAD HOMEPAGE w/ all your posts and 10 most recent posts in your area
   app.get("/api/:zip", function(req, res) {
+    res.json(req.body);
     // get all user's posts
     db.Posts.findAll({ where: { zip: req.params.zip } }).then(function(userposts) {
       res.render("home", {
@@ -38,7 +39,7 @@ module.exports = function(app) {
       title: req.body.title,
       body: req.body.body,
       category: req.body.category
-      expirationDate: //SET BASED ON CATEGORY 
+      // expirationDate: SET BASED ON CATEGORY 
     }).then(function(response) {
       // then return the result using res.json
       res.json(response);
@@ -124,7 +125,7 @@ module.exports = function(app) {
     db.userTable.create({
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password //check KAMRAN'S AUTHENTIFICATION
+      password: req.body.password, //check KAMRAN'S AUTHENTIFICATION
       zipcode: req.body.zipcode
     }).then(function(response) {
       // then return the result using res.json
