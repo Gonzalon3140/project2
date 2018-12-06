@@ -1,4 +1,5 @@
 var db = require("../models");
+var moment = require("moment");
 
 module.exports = function(app) {
 /*---------------PAGE-POPULATOR----------------*/
@@ -37,8 +38,8 @@ module.exports = function(app) {
     db.postTable.create({
       title: req.body.title,
       body: req.body.body,
-      category: req.body.category
-      expirationDate: //SET BASED ON CATEGORY 
+      category: req.body.category,
+      expirationDate: moment().add(3, 'days').calendar() // will change based on category, set to 3 days
     }).then(function(response) {
       // then return the result using res.json
       res.json(response);
@@ -124,7 +125,7 @@ module.exports = function(app) {
     db.userTable.create({
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password //check KAMRAN'S AUTHENTIFICATION
+      password: req.body.password,//check KAMRAN'S AUTHENTIFICATION
       zipcode: req.body.zipcode
     }).then(function(response) {
       // then return the result using res.json
