@@ -8,6 +8,7 @@
         
         <h2>Log-in Page</h2>
         <form class="clearfix mb-4" action="POST">
+          <a href="/home"><button type="button" class="btn btn-secondary float-right">Home Page</button></a>
           <div class="form-group">
             <label for="example-text">Username</label>
             <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter username here">
@@ -16,10 +17,9 @@
             <label for="example-text">Password</label>
             <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Password must include at least one number and one symbol">
           </div>
-          <button type="button" id="submit" class="btn btn-primary float-left">Log-In</button>
-          <a href="/signup">
-            <button type="button" class="btn btn-secondary float-right">Sign Up</button>
-          </a>
+          <a href="/auth/login"><button type="button" id="submit" class="btn btn-primary float-left">Log-In</button></a>
+          <a href="/auth/google"><button class = "btn btn-secondary float-right" style="background-color: crimson">Use Google</button></a>
+          <a href="/auth/signup"><button type="button" class="btn btn-secondary float-right">Sign Up</button></a>
         </form>
       </div>
     </div>
