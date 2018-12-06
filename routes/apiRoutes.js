@@ -1,11 +1,11 @@
 var db = require("../models");
+var moment = require("moment");
 
 module.exports = function(app) {
 /*---------------PAGE-POPULATOR----------------*/
 
   // LOAD HOMEPAGE w/ all your posts and 10 most recent posts in your area
   app.get("/api/:zip", function(req, res) {
-    res.json(req.body);
     // get all user's posts
     db.Posts.findAll({ where: { zip: req.params.zip } }).then(function(userposts) {
       res.render("home", {
@@ -38,8 +38,8 @@ module.exports = function(app) {
     db.postTable.create({
       title: req.body.title,
       body: req.body.body,
-      category: req.body.category
-      // expirationDate: SET BASED ON CATEGORY 
+      category: req.body.category,
+      expirationDate: moment().add(3, 'days').calendar() // will change based on category, set to 3 days
     }).then(function(response) {
       // then return the result using res.json
       res.json(response);
@@ -125,7 +125,7 @@ module.exports = function(app) {
     db.userTable.create({
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password, //check KAMRAN'S AUTHENTIFICATION
+      password: req.body.password,//check KAMRAN'S AUTHENTIFICATION
       zipcode: req.body.zipcode
     }).then(function(response) {
       // then return the result using res.json
@@ -154,7 +154,9 @@ module.exports = function(app) {
 
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
+    db.Example.destroy({ where: { id: req.params.id } }).then(function(
+      dbExample
+    ) {
       res.json(dbExample);
     });
   });

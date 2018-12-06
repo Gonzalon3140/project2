@@ -1,3 +1,34 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+body {
+  background-image: url("/images/map_background.png");
+  font-family: 'Unlock', cursive;
+}
+
+.main {
+  background-color: white; 
+}
+
+.container {
+  padding: 20px;
+  margin: 20px; 
+  align-content: center;
+}
+
+div.container.home {
+  background-color: lightsalmon; 
+  padding: 20px;
+  margin: 20px;
+}
+
+.header {
+  width: 100px;
+  height: 300px;
+  border: solid 1px;
+}
+
+.col, .col-5 {
+  padding:20px;
+}
