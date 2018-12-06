@@ -36,7 +36,7 @@ require("./routes/htmlRoutes")(app);
 //require("./routes/authRoutes")(app);
 
 var syncOptions = {
-  force: false
+  force: true
 };
 
 // If running a test, set syncOptions.force to true
