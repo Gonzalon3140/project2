@@ -3,16 +3,12 @@ module.exports = function(sequelize, DataTypes) {
     title: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [8]
-      }
+      validate: {len: [8]}
     },
     body: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [500]
-      }
+      validate: {len: [500]}
     },
     category: {
       type: DataTypes.STRING
@@ -24,9 +20,7 @@ module.exports = function(sequelize, DataTypes) {
     expirationDate: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isDate: true // only allow date strings
-      }
+      validate: {isDate: true}
     }
   });
 
