@@ -77,7 +77,7 @@ module.exports = function(app) {
 
 /*----------------COMMENT-MANAGER-----------------*/
 
-  // CREATE A POST
+  // CREATE A COMMENT
   app.post("/api/comments", function(req, res) {
     // Add sequelize code for creating a post using req.body,
     db.commentTable.create({
@@ -89,7 +89,7 @@ module.exports = function(app) {
     });
   });
   
-  // DELETE ONE OF YOUR POSTS
+  // DELETE ONE OF YOUR COMMENTS
   app.delete("/api/comments/:id", function(req, res) {
     // Add sequelize code to delete a post where the id is equal to req.params.id, 
     db.commentTable.destroy({
@@ -102,7 +102,7 @@ module.exports = function(app) {
     });
   });
   
-  // UPDATE YOUR POST
+  // UPDATE YOUR COMMENT
   app.put("/api/comments", function(req, res) {
     // Add code here to update a post using the values in req.body, where the id is equal to
     db.commentTable.update({
