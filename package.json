@@ -11,10 +11,15 @@
   },
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "dotenv": "^6.0.0",
     "env": "0.0.2",
+=======
+    "dotenv": "^6.2.0",
+>>>>>>> 545b7f60fbe0e6499f513c8ad817fd263e4a46bf
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
+    "moment": "^2.22.2",
     "mysql2": "^1.5.3",
     "nodemon": "^1.18.7",
     "passport": "^0.4.0",

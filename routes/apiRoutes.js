@@ -1,4 +1,5 @@
 var db = require("../models");
+var moment = require("moment");
 
 module.exports = function (app) {
   /*---------------PAGE-POPULATOR----------------*/
@@ -46,16 +47,15 @@ module.exports = function (app) {
   // CREATE A POST
   app.post("/api/posts", function (req, res) {
     // Add sequelize code for creating a post using req.body,
-    db.postTable
-      .create({
-        title: req.body.title,
-        body: req.body.body,
-        category: req.body.category
-      })
-      .then(function (response) {
-        // then return the result using res.json
-        res.json(response);
-      });
+    db.postTable.create({
+      title: req.body.title,
+      body: req.body.body,
+      category: req.body.category,
+      expirationDate: moment().add(3, 'days').calendar() // will change based on category, set to 3 days
+    }).then(function (response) {
+      // then return the result using res.json
+      res.json(response);
+    });
   });
 
   // DELETE ONE OF YOUR POSTS
@@ -93,7 +93,7 @@ module.exports = function (app) {
 
   /*----------------COMMENT-MANAGER-----------------*/
 
-  // CREATE A POST
+  // CREATE A COMMENT
   app.post("/api/comments", function (req, res) {
     // Add sequelize code for creating a post using req.body,
     db.commentTable
@@ -107,22 +107,20 @@ module.exports = function (app) {
       });
   });
 
-  // DELETE ONE OF YOUR POSTS
-  // app.delete("/api/comments/:id", function(req, res) {
-  //   // Add sequelize code to delete a post where the id is equal to req.params.id,
-  //   db.commentTable
-  //     .destroy({
-  //       where: {
-  //         id: req.params.id
-  //       }
-  //     })
-  //     .then(function(response) {
-  //       // then return the result using res.json
-  //       res.json(response);
-  //     });
-  // });
+  // DELETE ONE OF YOUR COMMENTS
+  app.delete("/api/comments/:id", function (req, res) {
+    // Add sequelize code to delete a post where the id is equal to req.params.id, 
+    db.commentTable.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (response) {
+      // then return the result using res.json
+      res.json(response);
+    });
+  });
 
-  // UPDATE YOUR POST
+  // UPDATE YOUR COMMENT
   app.put("/api/comments", function (req, res) {
     // Add code here to update a post using the values in req.body, where the id is equal to
     db.commentTable
@@ -144,17 +142,15 @@ module.exports = function (app) {
   // ADD USER ACCOUNT
   app.post("/api/users", function (req, res) {
     // Add sequelize code for creating a post using req.body,
-    db.userTable
-      .create({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password, //check KAMRAN'S AUTHENTIFICATION
-        zipcode: req.body.zipcode
-      })
-      .then(function (response) {
-        // then return the result using res.json
-        res.json(response);
-      });
+    db.userTable.create({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password, //check KAMRAN'S AUTHENTIFICATION
+      zipcode: req.body.zipcode
+    }).then(function (response) {
+      // then return the result using res.json
+      res.json(response);
+    });
   });
 };
 
