@@ -1,0 +1,35 @@
+<div class="container home">
+  <div class="row">
+    <a href="/auth/logout"><button class="btn btn-secondary">Logout</button></a>
+    <div class="col border border-white">
+      CATEGORY DISPLAY <!--displays all in category-->
+      {{category}}
+    </div>
+    <div class="col border border-white">
+      Search
+      <form>
+        <div class="form-group">
+          <select class="form-control" id="category-search">
+          <option>Choose a category</option>
+          <option>Event</option>
+          <option>Free</option>
+          <option>Report (Roadwork, Suspicious Activity, etc)</option>
+          <option>For Sale/Service Offered</option>
+          <option>Missed Connection</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Zipcode For Search (Defaults to Home)</label>
+          <input type="integer" class="form-control" id="category-zip" placeholder="95411">
+        </div>
+        <div class="form-group">
+        <label>Keyword/s (Optional)</label>
+        <input type="text" class="form-control" id="category-keyword" placeholder="bikes">
+        </div>
+        <button type="button" id="search-btn" class="btn btn-primary float-right">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<link href="https://fonts.googleapis.com/css?family=Unlock" rel="stylesheet"> 
