@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var userTable = sequelize.define("userTable", {
     name: {
       type: DataTypes.STRING,
@@ -21,8 +21,21 @@ module.exports = function(sequelize, DataTypes) {
     zipcode: {
       type: DataTypes.INTEGER,
       allowNull: false
-    }
+    },
+    id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      primaryKey: true
+    },
   });
+
+  userTable.associate = function (models) {
+    // Associating Author with Posts
+    // When an Author is deleted, also delete any associated Posts
+    userTable.hasMany(models.postTable, {
+      onDelete: "cascade"
+    });
+  };
   return userTable;
 };
 
