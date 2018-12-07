@@ -6,14 +6,16 @@ router.get("/signup", function(req, res) {
   res.render("signup");
 });
 
-router.get("/google", passport.authenticate("google", {
-  scope: ["profile"]
-})
+router.get(
+  "/google",
+  passport.authenticate("google", {
+    scope: ["profile"]
+  })
 );
 
 router.get("/login", function(req, res) {
   res.render("login");
-})
+});
 
 router.get("/logout", function(req, res) {
   //handle with passport
