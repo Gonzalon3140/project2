@@ -26,11 +26,11 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     }
-    id: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      primaryKey: true
-    },
+    // id: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false,
+    //   primaryKey: true
+    // },
   });
 
   userTable.associate = function (models) {
