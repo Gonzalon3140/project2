@@ -3,7 +3,7 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var db = require("./models");
 var keys = require("./config/keys");
-var passport=require("passport");
+var passport = require("passport");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
@@ -24,12 +24,12 @@ app.use("/auth", authRoutes);
 // app.use(passport.session());
 
 // Middleware
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static("public"));
 
 // Handlebars
-app.engine("handlebars",exphbs({defaultLayout: "main"}));
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 // Routes
