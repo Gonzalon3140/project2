@@ -1,36 +1,58 @@
 <div class="container home">
   <div class="row">
+    <a href="/auth/logout"><button class="btn btn-secondary">Logout</button></a>
     <div class="col border border-white">
       Most Recent Top 10 Posts in Your Area
+      {{home.localfeed}}
     </div>
     <div class="col-5 border border-white">
       Your Posts
+      {{home.userfeed}}
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-        Launch demo modal
+        Search for a post 
       </button>
 
       <!-- Modal -->
-      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+              <h5 class="modal-title">Modal title</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              ...
+            <div class="modal-body"> <!--will this allow form entry, with the default text being pulled from the db?-->
+              {{title}} 
+              {{body}}
+              {{category}}
             </div>
             <div class="modal-footer">
+              <!--create post button: href will == "/api/posts" -->
+              <!--delete post button: href will == "/api/posts/:id" -->
+              <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Comments</button>-->
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-primary"><a href="/api/posts">Save changes</a></button>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Modal 2 - Comments -->
+    <!--need comments modal triggered from a "read comments" button on the post modal
+      <div class="modal-body">
+        {{body}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/api/comments/:id">Delete</a></button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/api/comments">Submit Comment</a></button>
+        <button type="button" class="btn btn-primary"><a href="/api/comments">Save Changes</a></button>
+      </div>
+    -->
+
     <div class="col border border-white">
       Search
       <form>
@@ -65,3 +87,4 @@
 })</script> 
 
 <link href="https://fonts.googleapis.com/css?family=Unlock" rel="stylesheet"> 
+
