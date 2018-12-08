@@ -1,5 +1,5 @@
 var passport = require("passport");
-var GoogleStrategy = require("passport-google-oauth20");
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var keys = require("./keys");
 var db = require("../models");
 //var User = require("../models/user"); //need to use usertable model
@@ -15,7 +15,7 @@ passport.deserializeUser((id,done)=>{
     });
 });
 
-passport.use(
+exports.default = passport.use(
     new GoogleStrategy({
         // options for the Google Strategy
         callbackURL: "/auth/google/redirect",
@@ -24,22 +24,22 @@ passport.use(
     },
     (accessToken,refreshToken,profile,done)=>{
         // check if user exists
-        db.user.findOne({
+        db.userTable.findOne({
             where:{gID:profile.id}
         }).then((curUser)=>{
             if(curUser){
                 console.log("user found ", curUser);
                 done(null,curUser);
             }else{
-            db.user
+            db.userTable
                 .build({
                     gID: profile.id,
                     name: profile.displayName,
-                    thumbnail:profile._json.image.url})
+                    thumbnail:profile._json.image.url,
+                })
                 .save()
-                .then((newUser)=>{console.log("new user created", newUser)})
-                .catch(err=>{console.log("could not create row")});
-            done(null,newUser);
+                .then( newUser =>  done(null,newUser) )
+                .catch(err=> console.log(err));      
             }
         })       
     })

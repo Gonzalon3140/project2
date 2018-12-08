@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
   var userTable = sequelize.define("userTable", {
     gID: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull:false,
     },
     name: {
       type: DataTypes.STRING,
@@ -11,16 +11,16 @@ module.exports = function(sequelize, DataTypes) {
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: { isEmail: true }
+      allowNull: true,
+      // validate: {isEmail: true}
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     zipcode: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     thumbnail: {
       type: DataTypes.STRING,

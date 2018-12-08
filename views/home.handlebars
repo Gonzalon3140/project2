@@ -3,18 +3,63 @@
     <a href="/auth/logout"><button class="btn btn-secondary">Logout</button></a>
     <div class="col border border-white">
       Most Recent Top 10 Posts in Your Area
-      {{home.localfeed}}
+      {{#each localPost}}
+        <div class="comment">
+          <h2>{{localPost.title}}</h2>
+          {{localPost.body}}
+          <!-- Button trigger modal -->
+          <button type="button" id="{{localPost.id}}" class="btn btn-primary" data-toggle="modal" data-target="#readPost">
+            view
+          </button>
+        </div>
+      {{/each}}
     </div>
     <div class="col-5 border border-white">
       Your Posts
-      {{home.userfeed}}
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-        Launch demo modal
+      {{#each yourPosts}}
+        <div class="comment">
+          <h2>{{yourTitle}}</h2>
+          {{yourBody}}
+          <!-- Button trigger modal -->
+          <button type="button" id="{{yourPostID}}" class="btn btn-primary" data-toggle="modal" data-target="#readPost">
+            view
+          </button>
+        </div>
+      {{/each}}
+
+
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createPost">
+        Create a post
       </button>
 
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+<!--MODALS-MODALS-MODALS-MODALS-MODALS-->
+
+  <!-- MODAL 1: post pop-up -->
+      <div class="modal fade" id="readPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">{{title}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body {{category}}"> <!--will this allow form entry, with the default text being pulled from the db?-->
+              {{body}}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-id={{id}}><a href="/api/posts/:id">Delete</a></button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-id={{id}}><a href="/api/posts">Comments</a></button>
+              <button type="button" class="btn btn-primary"><a href="/api/posts" data-id={{id}}>Save changes</a></button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/home">Close</a></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <!-- MODAL 2: post gen form -->
+      <div class="modal fade" id="createPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -23,35 +68,67 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body"> <!--will this allow form entry, with the default text being pulled from the db?-->
-              {{title}} 
-              {{body}}
-              {{category}}
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="example-text">Title</label>
+                <input type="text" id="newTitle" class="form-control {{newTitle}}" aria-describedby="example-text" placeholder="Password must include at least one number and one symbol">
+              </div>
+              <div class="form-group">
+                <label for="example-text">Content</label>
+                <input type="text" id="newContent" class="form-control {{newBody}}" aria-describedby="example-text" placeholder="Password must include at least one number and one symbol">
+              </div>
+              <div class="form-group">
+                <select class="form-control" id="category-search">
+                <option>Choose a category</option>
+                <option data-id="event">Event</option>
+                <option data-id="free">Free</option>
+                <option data-id="report">Report (Roadwork, Suspicious Activity, etc)</option>
+                <option data-id="forsale">For Sale/Service Offered</option>
+                <option data-id="missed"> Missed Connection</option>
+                </select>
+              </div>             
             </div>
             <div class="modal-footer">
-              <!--create post button: href will == "/api/posts" -->
-              <!--delete post button: href will == "/api/posts/:id" -->
-              <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Comments</button>-->
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary"><a href="/api/posts">Save changes</a></button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/api/posts">Create</a></button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/home">Close</a></button>            
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Modal 2 - Comments -->
-    <!--need comments modal triggered from a "read comments" button on the post modal
-      <div class="modal-body">
-        {{body}}
+
+
+  <!-- MODAL 3: Read Comments -->
+      <div class="modal fade" id="createPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              {{body}}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/api/comments/:id">Delete</a></button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/home">Close</a></button>
+              <button type="button" class="btn btn-primary"><a href="/api/comments">Save Changes</a></button>
+            </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/api/posts">Create</a></button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/api/comments/:id">Delete</a></button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/api/comments">Submit Comment</a></button>
-        <button type="button" class="btn btn-primary"><a href="/api/comments">Save Changes</a></button>
-      </div>
-    -->
+
+  <!--END OF MODALS *** END OF MODALS *** END OF MODALS *** END OF MODALS ***-->
+
+    </div>
+  </div> <!--end of post display && modals section-->
+
 
     <div class="col border border-white">
       Search

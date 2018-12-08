@@ -8,16 +8,16 @@ var passport = require("passport");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
-//authentication
-var authRoutes = require("./routes/authRoutes");
-//var passportSetup = require("./config/oAuth");
-app.use("/auth", authRoutes);
-var cookieSession = require("cookie-session");
-app.use(
-  cookieSession({ maxAge: 24 * 60 * 60 * 1000, keys: [keys.session.cookieKey] })
-);
 app.use(passport.initialize());
 app.use(passport.session());
+var authRoutes = require("./routes/authRoutes");
+//var passportSetup = require("./config/oAuth");
+var cookieSession = require("cookie-session");
+app.use(cookieSession({maxAge:24*60*60*1000,keys:[keys.session.cookieKey]}));
+
+//authentication
+app.use("/auth", authRoutes);
+
 // var session = require("express-session");
 // app.use(session({secret:"123454321",resave:true,saveUninitialized:true}));
 // app.use(passport.initialize());
@@ -36,7 +36,7 @@ app.set("view engine", "handlebars");
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
-var syncOptions = { force: true };
+var syncOptions = {force: false};
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`
