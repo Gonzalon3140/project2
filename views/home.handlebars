@@ -5,10 +5,10 @@
       Most Recent Top 10 Posts in Your Area
       {{#each localPost}}
         <div class="comment">
-          <h2>{{localTitle}}</h2>
-          {{localBody}}
+          <h2>{{localPost.title}}</h2>
+          {{localPost.body}}
           <!-- Button trigger modal -->
-          <button type="button" id="{{localPostID}}" class="btn btn-primary" data-toggle="modal" data-target="#readPost">
+          <button type="button" id="{{localPost.id}}" class="btn btn-primary" data-toggle="modal" data-target="#readPost">
             view
           </button>
         </div>
@@ -16,7 +16,6 @@
     </div>
     <div class="col-5 border border-white">
       Your Posts
-
       {{#each yourPosts}}
         <div class="comment">
           <h2>{{yourTitle}}</h2>
@@ -42,20 +41,6 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalCenterTitle">{{title}}</h5>
-
-      {{home.userfeed}}
-      <!-- Button trigger modal -->
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-        Search for a post 
-      </button>
-
-      <!-- Modal -->
-      <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Modal title</h5>
-
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
