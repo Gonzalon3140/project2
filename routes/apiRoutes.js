@@ -10,6 +10,7 @@ module.exports = function (app) {
 
   // LOAD HOMEPAGE w/ all your posts and 10 most recent posts in your area
   app.get("/api/95618", function (req, res) {
+
     // get 10 recent posts in user region
     db.postTable.findAll({ 
       limit: 10, 
@@ -22,30 +23,39 @@ module.exports = function (app) {
           localPost: response
         });
     });    
+
     // get all user's posts
     db.postTable.findAll({
       where: {
-        zip: 95618
+
+        zipcode: req.params.zip
       }
     }).then(function (userposts) {
-      for (i = 0; i < userposts.length; i++) {
-        res.render("home", {
-          yourPosts: userposts[i],
-          yourTitle: userposts[i].title,
-          yourBody: userposts[i].title,
-          postID: userposts[i].id
-        });
-      }
+      res.render("home", {
+        userfeed: userposts
+      });
+    });
+    // get all recent posts in user region
+    db.Posts.findAll({
+      where: {
+        zipcode: req.params.zip
+      } /* && limited by most recent */
+    }).then(function (recent) {
+      res.render("home", {
+        localfeed: recent
+      });
+
     });
 
   });
 
   // LOAD CATEGORY page containing all posts
   app.get("/api/:zip/:category", function (req, res) {
-    db.postTable.findAll({
+
+    db.PostTable.findAll({
       where: {
-        category: req.body.category,
-        zip: location
+        category: req.params.category,
+        zipcode: req.params.zip
       }
     }).then(function (resPosts) {
       res.render("category", {
