@@ -15,12 +15,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     expired: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
       defaultValue: false
     },
     expirationDate: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: { isDate: true }
     }
   });
@@ -30,7 +30,7 @@ module.exports = function(sequelize, DataTypes) {
     // A Post can't be created without an Author due to the foreign key constraint
     postTable.belongsTo(models.userTable, {
       foreignKey: {
-        allowNull: false
+        allowNull: true
       }
     });
   };

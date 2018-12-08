@@ -5,7 +5,7 @@ var router = require("express").Router();
 
 require('../config/oAuth.js'); // this is where our stretegy is....
 
-router.get("/signup", function(req, res) {res.redirect("/signup")});
+router.get("/signup", function(req, res) {res.render("signup")});
 router.get("/google",passport.authenticate('google', { scope: ['profile'] }));
 //router.get("/login", function(req, res) {res.render("login")});
 router.get("/logout", function(req, res) {req.logout();res.redirect("/")});
