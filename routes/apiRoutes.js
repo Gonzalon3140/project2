@@ -5,11 +5,11 @@ module.exports = function (app) {
   /*---------------PAGE-POPULATOR----------------*/
 
   // LOAD HOMEPAGE w/ all your posts and 10 most recent posts in your area
-  app.get("/api/:zip", function (req, res) {
+  app.get("/api/95618", function (req, res) {
     // get all user's posts
     db.Posts.findAll({
       where: {
-        zip: req.params.zip
+        zipcode: req.params.zip
       }
     }).then(function (userposts) {
       res.render("home", {
@@ -19,7 +19,7 @@ module.exports = function (app) {
     // get all recent posts in user region
     db.Posts.findAll({
       where: {
-        zip: req.params.zip
+        zipcode: req.params.zip
       } /* && limited by most recent */
     }).then(function (recent) {
       res.render("home", {
@@ -30,10 +30,10 @@ module.exports = function (app) {
 
   // LOAD CATEGORY page containing all posts
   app.get("/api/:zip/:category", function (req, res) {
-    db.Posts.findAll({
+    db.PostTable.findAll({
       where: {
         category: req.params.category,
-        zip: req.params.zip
+        zipcode: req.params.zip
       }
     }).then(function (resPosts) {
       res.render("category", {
