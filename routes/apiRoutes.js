@@ -47,6 +47,7 @@ module.exports = function (app) {
   // CREATE A POST
   app.post("/api/posts", function (req, res) {
     // Add sequelize code for creating a post using req.body,
+
     db.postTable.create({
       title: req.body.title,
       body: req.body.body,
@@ -56,6 +57,7 @@ module.exports = function (app) {
       // then return the result using res.json
       res.json(response);
     });
+
   });
 
   // DELETE ONE OF YOUR POSTS
@@ -151,32 +153,20 @@ module.exports = function (app) {
       // then return the result using res.json
       res.json(response);
     });
-  });
-};
 
-/*
-module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples ", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
-    });
-  });
+  // GET USER INFO FOR PROFILE PAGE
+  app.get("/api/users", function (req, res) {
+    db.Posts.findOne({
+      where: {
+        id: req.id
+      }
+    }).then(function (userProfile) {
+      res.render("profile", {
+        userProfile
+      });
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.json(dbExample);
     });
   });
-};
-*/
+}
