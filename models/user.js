@@ -1,18 +1,18 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   var userTable = sequelize.define("userTable", {
     gID: {
-      type:DataTypes.STRING,
-      allowNull:false,
+      type: DataTypes.STRING,
+      allowNull: false
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {len: [8]}
+      validate: { len: [8] }
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {isEmail: true}
+      validate: { isEmail: true }
     },
     password: {
       type: DataTypes.STRING,
@@ -33,7 +33,7 @@ module.exports = function (sequelize, DataTypes) {
     // },
   });
 
-  userTable.associate = function (models) {
+  userTable.associate = function(models) {
     // Associating Author with Posts
     // When an Author is deleted, also delete any associated Posts
     userTable.hasMany(models.postTable, {
@@ -42,4 +42,3 @@ module.exports = function (sequelize, DataTypes) {
   };
   return userTable;
 };
-
