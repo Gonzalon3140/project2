@@ -14,8 +14,9 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING
     },
     expired: {
-      type: DataTypes.STRING,
-      allowNull: false
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
     },
     expirationDate: {
       type: DataTypes.STRING,
