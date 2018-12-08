@@ -159,32 +159,16 @@ module.exports = function (app) {
       // then return the result using res.json
       res.json(response);
     });
-<<<<<<< HEAD
   });
 
   // GET USER INFO FOR PROFILE PAGE
   app.get("/api/users", function(req,res){
     db.Posts.findOne({ where: {id:req.id} }).then(function(userProfile) {
       res.render("profile", {userProfile});
-=======
-
-  });
-};
-
-/*
-module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples ", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
->>>>>>> 34af0abb16b219a656e1dba6724baa2353ae8bf0
     });
   })
 
 
-<<<<<<< HEAD
-}
-=======
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
     db.Example.destroy({ where: { id: req.params.id } }).then(function(
@@ -195,7 +179,5 @@ module.exports = function(app) {
   });
 };
 
-*/
 
->>>>>>> 34af0abb16b219a656e1dba6724baa2353ae8bf0
 
