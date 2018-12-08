@@ -6,7 +6,7 @@ module.exports = function (app) {
   /*---------------PAGE-POPULATOR----------------*/
 
   //var to find by zipcode
-  var location = authentic.location;
+  //var location = authentic.location;
 
   // LOAD HOMEPAGE w/ all your posts and 10 most recent posts in your area
   app.get("/api/95618", function (req, res) {
@@ -21,9 +21,11 @@ module.exports = function (app) {
         res.render("home", {
           localPost: response
         });
-    });    
+    });  
+    
+  });
     // get all user's posts
-    db.postTable.findAll({
+    /*db.postTable.findAll({
       where: {
         zip: 95618
       }
@@ -36,12 +38,12 @@ module.exports = function (app) {
           postID: userposts[i].id
         });
       }
-    });
+    });*/
 
-  });
+  });*/
 
   // LOAD CATEGORY page containing all posts
-  app.get("/api/:zip/:category", function (req, res) {
+  /*app.get("/api/:zip/:category", function (req, res) {
     db.postTable.findAll({
       where: {
         category: req.body.category,
@@ -52,12 +54,12 @@ module.exports = function (app) {
         category: resPosts
       });
     });
-  });
+  });*/
 
   /*---------------POST-MANAGER------------------*/
 
   // CREATE A POST
-  app.post("/api/posts", function (req, res) {
+  /*app.post("/api/posts", function (req, res) {
     // Add sequelize code for creating a post using req.body,
 
     db.postTable.create({
@@ -70,10 +72,10 @@ module.exports = function (app) {
       res.json(response);
     });
 
-  });
+  });*/
 
   //DELETE ONE OF YOUR POSTS
-     app.delete("/api/posts/:id", function (req, res) {
+     /*app.delete("/api/posts/:id", function (req, res) {
         var id = $(this).data("id");
        // Add sequelize code to delete a post where the id is equal to req.params.id,
        db.postTable
@@ -86,10 +88,10 @@ module.exports = function (app) {
            // then return the result using res.json
            res.json(response);
          });
-     });
+     });*/
 
   // UPDATE YOUR POST
-  app.put("/api/posts/update", function (req, res) {
+  /*app.put("/api/posts/update", function (req, res) {
     var id = $(this).data("id");
     // Add code here to update a post using the values in req.body, where the id is equal to
     db.postTable
@@ -105,13 +107,13 @@ module.exports = function (app) {
         // then return the result using res.json
         res.json(response);
       });
-  });
+  });*/
 
   /*----------------COMMENT-MANAGER-----------------*/
 
 
   // CREATE A COMMENT
-  app.post("/api/comments", function(req, res) {
+  /*app.post("/api/comments", function(req, res) {
 
     // Add sequelize code for creating a post using req.body,
     db.commentTable
@@ -123,11 +125,11 @@ module.exports = function (app) {
         // then return the result using res.json
         res.json(response);
       });
-  });
+  });*/
 
   
   // DELETE ONE OF YOUR COMMENTS
-  app.delete("/api/comments/:id", function(req, res) {
+  /*app.delete("/api/comments/:id", function(req, res) {
     // Add sequelize code to delete a post where the id is equal to req.params.id, 
     db.commentTable.destroy({
       where: {
@@ -137,10 +139,10 @@ module.exports = function (app) {
       // then return the result using res.json
       res.json(response);
     });
-  });
+  });*/
   
   // UPDATE YOUR COMMENT
-  app.put("/api/comments", function(req, res) {
+  /*app.put("/api/comments", function(req, res) {
 
     // Add code here to update a post using the values in req.body, where the id is equal to
     db.commentTable
@@ -155,12 +157,12 @@ module.exports = function (app) {
         // then return the result using res.json
         res.json(response);
       });
-  });
+  });*/
 
   /*-------------USER-MANAGER----------------*/
 
   // ADD USER ACCOUNT
-  app.post("/api/users", function (req, res) {
+  /*app.post("/api/users", function (req, res) {
     // Add sequelize code for creating a post using req.body,
     var pass1 = $("#pass");
     var pass2 = $("#confirm")
@@ -184,8 +186,10 @@ module.exports = function (app) {
     }
 
   });
-};
+};*/
 
+
+/* UNUSED CODE -- UNUSED CODE -- UNUSED CODE -- UNUSED CODE -- UNUSED CODE -- UNUSED CODE -- */
 /*
 module.exports = function(app) {
   // Get all examples
