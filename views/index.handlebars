@@ -1,3 +1,4 @@
+{{!-- This is the first page that loads when the server is running. --}}
 <div id="home">
   <div class="container">
     <div class="row">
@@ -8,7 +9,6 @@
         
         <h2>Log-in Page</h2>
         <form class="clearfix mb-4" action="POST">
-          <a href="/home"><button type="button" class="btn btn-secondary float-right">Home Page</button></a>
           <div class="form-group">
             <label for="example-text">Username</label>
             <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter username here">
@@ -18,7 +18,7 @@
             <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Password must include at least one number and one symbol">
           </div>
           <a href="/auth/login"><button type="button" id="submit" class="btn btn-primary float-left">Log-In</button></a>
-          <a href="/auth/google"><button class = "btn btn-secondary float-right google-btn">Use Google</button></a>
+          <a href="/auth/google"><button class = "btn btn-primary float-left google-btn">Use Google</button></a>
           <a href="/auth/signup"><button type="button" class="btn btn-secondary float-right">Sign Up</button></a>
         </form>
       </div>
