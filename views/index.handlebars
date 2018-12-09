@@ -13,13 +13,13 @@
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
             <label for="example-text">Username</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter username here">
+            <input name="username" type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter username here">
           </div>
           <div class="form-group">
             <label for="example-text">Password</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Password must include at least one number and one symbol">
+            <input name="password" type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Password must include at least one number and one symbol">
           </div>
-          <a href="/home"><button type="button" id="submit" class="btn btn-primary float-left">Log-In</button></a>
+          <a href="/auth/login"><button type="button" id="submit" class="btn btn-primary float-left">Log-In</button></a>
           {{!-- <a href="/auth/google"><button class = "btn btn-primary float-left google-btn">Use Google</button></a> --}}
           <a href="/auth/signup"><button type="button" class="btn btn-secondary float-right">Create Account</button></a>
         </form>
