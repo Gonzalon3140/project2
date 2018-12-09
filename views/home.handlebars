@@ -3,12 +3,12 @@
     <a href="/auth/logout"><button class="btn btn-secondary">Logout</button></a>
     <div class="col border border-white">
       Most Recent Top 10 Posts in Your Area
-      {{#each localPost}}
+      {{#each userfeed}}
         <div class="comment">
-          <h2>{{localPost.title}}</h2>
-          {{localPost.body}}
+          <h2>{{userfeed.title}}</h2>
+          {{userfeed.body}}
           <!-- Button trigger modal -->
-          <button type="button" id="{{localPost.id}}" class="btn btn-primary" data-toggle="modal" data-target="#readPost">
+          <button type="button" id="{{userfeed.id}}" class="btn btn-primary" data-toggle="modal" data-target="#readPost">
             view
           </button>
         </div>
