@@ -6,7 +6,7 @@ module.exports = function (app) {
   /*---------------PAGE-POPULATOR----------------*/
 
   //var to find by zipcode
-  var location = authentic.location;
+  //var location = authentic.location;
 
   // LOAD HOMEPAGE w/ all your posts and 10 most recent posts in your area
   app.get("/api/95618", function (req, res) {
@@ -197,6 +197,7 @@ module.exports = function (app) {
 //   });
 // };
 
+/* UNUSED CODE -- UNUSED CODE -- UNUSED CODE -- UNUSED CODE -- UNUSED CODE -- UNUSED CODE -- */
 /*
 module.exports = function(app) {
   // Get all examples
