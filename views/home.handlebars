@@ -1,14 +1,31 @@
 <div class="container home">
   <div class="row">
     <a href="/auth/logout"><button class="btn btn-secondary">Logout</button></a>
+    
+    <!--START OF TEST CODE-->
     <div class="col border border-white">
-      Most Recent Top 10 Posts in Your Area
+      TESTING LOOP THROUGH OBJECT DISPLAY
       {{#each userfeed}}
         <div class="comment">
           <h2>{{userfeed.title}}</h2>
           {{userfeed.body}}
           <!-- Button trigger modal -->
           <button type="button" id="{{userfeed.id}}" class="btn btn-primary" data-toggle="modal" data-target="#readPost">
+            view
+          </button>
+        </div>
+      {{/each}}
+    </div>
+    <!--END OF TEST CODE-->
+
+    <div class="col border border-white">
+      Most Recent Top 10 Posts in Your Area
+      {{#each recent}}
+        <div class="comment">
+          <h2>{{recent.title}}</h2>
+          {{recent.body}}
+          <!-- Button trigger modal -->
+          <button type="button" id="{{recent.id}}" class="btn btn-primary" data-toggle="modal" data-target="#readPost">
             view
           </button>
         </div>

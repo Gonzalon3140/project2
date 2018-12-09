@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
   var userTable = sequelize.define("userTable", {
     gID: {
       type: DataTypes.STRING,
-      allowNull:false,
+      allowNull: false
     },
     name: {
       type: DataTypes.STRING,

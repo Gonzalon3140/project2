@@ -23,12 +23,12 @@ module.exports = function (app) {
   })
 }
 
-
+  //app.get("/api/:zipcode/:id", function (req, res) {
   //   // get all user's posts
   //   db.postTable.findAll({
   //     where: {
-
-  //       zipcode: req.params.zip
+  //       zipcode: req.params.zip --> HOW DO I GET THE ZIPCODE FROM THE CURRENT USER AND PUT IT IN THE ROUTE?
+  //       id: req.params.id --> HOW DO I GET THE ID FROM THE CURRENT USER AND PUT IT IN THE ROUTE?
   //     }
   //   }).then(function (userposts) {
   //     res.render("home", {
@@ -38,8 +38,9 @@ module.exports = function (app) {
   //   // get all recent posts in user region
   //   db.postTable.findAll({
   //     where: {
-  //       zipcode: req.params.zip
-  //     } /* && limited by most recent */
+  //       zipcode: req.params.zip, --> HOW DO I GET THE ZIPCODE FROM THE CURRENT USER AND PUT IT IN THE ROUTE?
+  //       limit: 10
+  //      }
   //   }).then(function (recent) {
   //     res.render("home", {
   //       localfeed: recent
@@ -50,27 +51,29 @@ module.exports = function (app) {
   // });
 
 
-//   // LOAD CATEGORY page containing all posts
-//   app.get("/api/:zip/:category", function (req, res) {
+      // LOAD CATEGORY page containing all posts
+     /*app.get("/api/:zip/:category", function (req, res) {
+       db.PostTable.findAll({
+         where: {
+           //category: req.params.category, //--> HOW DO I GET THE CATEGORY FROM THE DROP-DOWN MENU SELECTION? IF OPTION HAS AN ID, HOW DO I SELECT THE ACTIVATED ID?
+           zipcode: req.params.zip
+         }
+       }).then(function (resPosts) {
+         res.render("category", {
+           category: resPosts
+         });
+       });
+     });
+  }*/ //end of module.exports
 
-//     db.PostTable.findAll({
-//       where: {
-//         category: req.params.category,
-//         zipcode: req.params.zip
-//       }
-//     }).then(function (resPosts) {
-//       res.render("category", {
-//         category: resPosts
-//       });
-//     });
-//   });
 
 //   /*---------------POST-MANAGER------------------*/
 
 //   // CREATE A POST
 //   app.post("/api/posts", function (req, res) {
-//     // Add sequelize code for creating a post using req.body,
-
+//    //these vars change set the expirationDate by category
+//      var 
+//    // Add sequelize code for creating a post using req.body,
 //     db.postTable.create({
 //       title: req.body.newTitle,
 //       body: req.body.newBody,

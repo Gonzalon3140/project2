@@ -12,4 +12,5 @@ app.get("/api/test/:zip", function (req, res) {
     }).then(function (response) {
         console.log(response);
     }); 
-})
+});
+}
