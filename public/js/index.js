@@ -105,3 +105,15 @@ $("#openCreatePost").on("click", function() {
 $("#closeCreatePost").on("click", function() {
   $("#createPost").css("display", "none")
 })
+
+$(document).ready(function(){
+  $('#modal1').modal();
+});
+
+$(document).ready(function(){
+  $('#modal2').modal();
+});
+
+$(document).ready(function(){
+  $('select').formSelect();
+});

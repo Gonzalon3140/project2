@@ -42,6 +42,10 @@ div.col.s4 {
   border-width: 1px;
 }
 
+.home-title {
+  background: white; 
+}
+
 /* #createPost {
   display: none;
   position: fixed;
