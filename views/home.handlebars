@@ -1,184 +1,84 @@
-<div class="container home">
-  <div class="row">
-    <a href="/auth/logout"><button class="btn btn-secondary">Logout</button></a>
-    
-    <!--START OF TEST CODE-->
-    <div class="col border border-white">
-      TESTING LOOP THROUGH OBJECT DISPLAY
-      {{#each userfeed}}
+<h1 class="home-title">User Homepage</h1>
+
+<div class="row home-row">
+  
+      <div class="col s4">
+        <h3>Most Recent Top 10 Posts in Your Area</h3>
+        {{!-- {{#each recent}} --}}
         <div class="comment">
-          <h2>{{userfeed.title}}</h2>
-          {{userfeed.body}}
-          <!-- Button trigger modal -->
-          <button type="button" id="{{userfeed.id}}" class="btn btn-primary" data-toggle="modal" data-target="#readPost">
-            view
-          </button>
-        </div>
-      {{/each}}
-    </div>
-    <!--END OF TEST CODE-->
-
-    <div class="col border border-white">
-      Most Recent Top 10 Posts in Your Area
-      {{#each recent}}
-        <div class="comment">
-          <h2>{{recent.title}}</h2>
-          {{recent.body}}
-          <!-- Button trigger modal -->
-          <button type="button" id="{{recent.id}}" class="btn btn-primary" data-toggle="modal" data-target="#readPost">
-            view
-          </button>
-        </div>
-      {{/each}}
-    </div>
-    <div class="col-5 border border-white">
-      Your Posts
-      {{#each yourPosts}}
-        <div class="comment">
-          <h2>{{yourTitle}}</h2>
-          {{yourBody}}
-          <!-- Button trigger modal -->
-          <button type="button" id="{{yourPostID}}" class="btn btn-primary" data-toggle="modal" data-target="#readPost">
-            view
-          </button>
-        </div>
-      {{/each}}
-
-
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createPost">
-        Create a post
-      </button>
-
-
-<!--MODALS-MODALS-MODALS-MODALS-MODALS-->
-
-  <!-- MODAL 1: post pop-up -->
-      <div class="modal fade" id="readPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalCenterTitle">{{title}}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body {{category}}"> <!--will this allow form entry, with the default text being pulled from the db?-->
-              {{body}}
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-id={{id}}><a href="/api/posts/:id">Delete</a></button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-id={{id}}><a href="/api/posts">Comments</a></button>
-              <button type="button" class="btn btn-primary"><a href="/api/posts" data-id={{id}}>Save changes</a></button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/home">Close</a></button>
-            </div>
-          </div>
+          {{!-- <h2>{{recent.title}}</h2>
+          {{recent.body}} --}}
         </div>
       </div>
 
-  <!-- MODAL 2: post gen form -->
-      <div class="modal fade" id="createPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="example-text">Title</label>
-                <input type="text" id="newTitle" class="form-control {{newTitle}}" aria-describedby="example-text" placeholder="Password must include at least one number and one symbol">
+      <div class="col s4">
+        <h3>Search Posts</h3>
+        <!-- Modal Trigger -->
+        <a class="waves-effect waves-light btn modal-trigger float-right" href="#modal1">Post</a>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+        {{!-- form goes here --}}
+          <div class="input-field col s12">
+            <select>
+              <option value="">Choose your Category</option>
+              <option value="event">Event</option>
+              <option value="free">Free</option>
+              <option value="report">Report (Roadwork, Suspicious Activity, etc)</option>
+              <option value="sale">For Sale/Service Offered</option>
+              <option value="missed">Missed Connections</option> 
+            </select>
+            <label>Category Select</label>
+          </div>
+
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <textarea id="textarea1" class="materialize-textarea"></textarea>
+                  <label for="textarea1">Title</label>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="example-text">Content</label>
-                <input type="text" id="newContent" class="form-control {{newBody}}" aria-describedby="example-text" placeholder="Password must include at least one number and one symbol">
+            </form>
+          </div>
+
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <textarea id="textarea1" class="materialize-textarea"></textarea>
+                  <label for="textarea1">Add details about your post</label>
+                </div>
               </div>
-              <div class="form-group">
-                <select class="form-control" id="category-search">
-                <option>Choose a category</option>
-                <option data-id="event">Event</option>
-                <option data-id="free">Free</option>
-                <option data-id="report">Report (Roadwork, Suspicious Activity, etc)</option>
-                <option data-id="forsale">For Sale/Service Offered</option>
-                <option data-id="missed"> Missed Connection</option>
-                </select>
-              </div>             
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/api/posts">Create</a></button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/home">Close</a></button>            
-            </div>
+            </form>
           </div>
+        
         </div>
+
+        <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        </div>
+        </div>
+        </div>
+
+      <div class="col s4">
+        <h3>Your Posts</h3>
       </div>
 
-
-
-  <!-- MODAL 3: Read Comments -->
-      <div class="modal fade" id="createPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              {{body}}
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/api/comments/:id">Delete</a></button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/home">Close</a></button>
-              <button type="button" class="btn btn-primary"><a href="/api/comments">Save Changes</a></button>
-            </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/api/posts">Create</a></button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-  <!--END OF MODALS *** END OF MODALS *** END OF MODALS *** END OF MODALS ***-->
-
-    </div>
-  </div> <!--end of post display && modals section-->
-
-
-    <div class="col border border-white">
-      Search
-      <form>
-        <div class="form-group">
-          <select class="form-control" id="category-search">
-          <option>Choose a category</option>
-          <option>Event</option>
-          <option>Free</option>
-          <option>Report (Roadwork, Suspicious Activity, etc)</option>
-          <option>For Sale/Service Offered</option>
-          <option>Missed Connection</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Zipcode For Search (Defaults to Home)</label>
-          <input type="integer" class="form-control" id="category-zip" placeholder="95411">
-        </div>
-        <div class="form-group">
-        <label>Keyword/s (Optional)</label>
-        <input type="text" class="form-control" id="category-keyword" placeholder="bikes">
-        </div>
-        <button type="button" id="search-btn" class="btn btn-primary float-right">Submit</button>
-      </form>
-    </div>
-  </div>
 </div>
+
+
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
-<script>$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})</script> 
+
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 <link href="https://fonts.googleapis.com/css?family=Unlock" rel="stylesheet"> 
 
+ <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">

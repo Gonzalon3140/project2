@@ -1,0 +1,147 @@
+
+
+
+<div class="container home">
+  <div class="row">
+    <a href="/auth/logout"><button class="btn btn-secondary">Logout</button></a>
+    
+    <div class="col border border-white">Search
+      <form>
+        <div class="form-group">
+          <select class="form-control" id="category-search">
+          <option>Choose a category</option>
+          <option>Event</option>
+          <option>Free</option>
+          <option>Report (Roadwork, Suspicious Activity, etc)</option>
+          <option>For Sale/Service Offered</option>
+          <option>Missed Connection</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Zipcode For Search (Defaults to Home)</label>
+          <input type="integer" class="form-control" id="category-zip" placeholder="95411">
+        </div>
+        <div class="form-group">
+        <label>Keyword/s (Optional)</label>
+        <input type="text" class="form-control" id="category-keyword" placeholder="bikes">
+        </div>
+        <button type="button" id="search-btn" class="btn btn-primary float-right">Submit</button>
+      </form>
+    </div>
+
+    <div class="col border border-white">
+      Most Recent Top 10 Posts in Your Area
+      {{#each recent}}
+        <div class="comment">
+          <h2>{{recent.title}}</h2>
+          {{recent.body}}
+          <!-- I DON'T UNDERSTAND WHY THIS WOULD BE A MODAL??  WE JUST WANT IT TO AUTO FILL
+          THE SECTION OF HOME PAGE.  CAN ANYONE EXPLAIN?Button trigger modal -->
+          <button type="button" id="{{recent.id}}" class="btn btn-primary" data-toggle="modal" data-target="#readPost">
+            view
+          </button>
+        </div>
+      {{/each}}
+    </div>
+
+    <div class="col-5 border border-white">
+      Your Posts
+      {{#each yourPosts}}
+        <div class="comment">
+          <h2>{{yourTitle}}</h2>
+          {{yourBody}}
+          <!-- Button trigger edit post modal -->
+          <button type="button" id="{{yourPostID}}" class="btn btn-primary" data-toggle="modal" data-target="#readPost">
+            Edit
+          </button>
+        </div>
+      {{/each}}
+
+      <!-- Button trigger create a post modal -->
+      <button id="openCreatePost" type="button" class="btn btn-primary" data-toggle="modal" data-target="#createPost">
+        Create a post
+      </button>
+
+
+<!--MODALS-MODALS-MODALS-MODALS-MODALS-->
+
+  <!-- MODAL 2: post gen form -->
+      <div id="createPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Create a Post</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="example-text">Title</label>
+                <input type="text" id="newTitle" class="form-control {{newTitle}}" aria-describedby="example-text" placeholder="Password must include at least one number and one symbol">
+              </div>
+              <div class="form-group">
+                <label for="example-text">Content</label>
+                <input type="text" id="newContent" class="form-control {{newBody}}" aria-describedby="example-text" placeholder="Password must include at least one number and one symbol">
+              </div>
+              <div class="form-group">
+                <select class="form-control" id="category-search">
+                <option>Choose a category</option>
+                <option data-id="event">Event</option>
+                <option data-id="free">Free</option>
+                <option data-id="report">Report (Roadwork, Suspicious Activity, etc)</option>
+                <option data-id="forsale">For Sale/Service Offered</option>
+                <option data-id="missed"> Missed Connection</option>
+                </select>
+              </div>             
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/api/posts">Create</a></button>
+              <button id="closeCreatePost" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>         
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<!-- MODAL 1: post pop-up -->
+      {{!-- <div class="modal fade" id="readPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">{{title}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body {{category}}"> <!--will this allow form entry, with the default text being pulled from the db?-->
+              {{body}}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-id={{id}}><a href="/api/posts/:id">Delete</a></button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-id={{id}}><a href="/api/posts">Comments</a></button>
+              <button type="button" class="btn btn-primary"><a href="/api/posts" data-id={{id}}>Save changes</a></button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/home">Close</a></button>
+            </div>
+          </div>
+        </div>
+      </div> --}}
+
+  
+    </div>
+
+    </div>
+</div> <!--end of post display && modals section-->
+
+
+    
+ 
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+{{!-- <script>$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})</script>  --}}
+
+
+
