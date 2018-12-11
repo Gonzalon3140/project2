@@ -53,7 +53,7 @@ module.exports = function (app) {
       body: req.body.body,
       category: req.body.category,
       expirationDate: moment().add(3, 'days').calendar() // will change based on category, set to 3 days
-    }).then(function(response) {
+    }).then(function (response) {
       // then return the result using res.json
       res.json(response);
     });
@@ -97,7 +97,7 @@ module.exports = function (app) {
 
 
   // CREATE A COMMENT
-  app.post("/api/comments", function(req, res) {
+  app.post("/api/comments", function (req, res) {
 
     // Add sequelize code for creating a post using req.body,
     db.commentTable
@@ -112,22 +112,22 @@ module.exports = function (app) {
   });
 
 
-  
+
   // DELETE ONE OF YOUR COMMENTS
-  app.delete("/api/comments/:id", function(req, res) {
+  app.delete("/api/comments/:id", function (req, res) {
     // Add sequelize code to delete a post where the id is equal to req.params.id, 
     db.commentTable.destroy({
       where: {
         id: req.params.id
       }
-    }).then(function(response) {
+    }).then(function (response) {
       // then return the result using res.json
       res.json(response);
     });
   });
-  
+
   // UPDATE YOUR COMMENT
-  app.put("/api/comments", function(req, res) {
+  app.put("/api/comments", function (req, res) {
 
     // Add code here to update a post using the values in req.body, where the id is equal to
     db.commentTable
@@ -153,49 +153,54 @@ module.exports = function (app) {
     db.userTable.create({
       name: req.body.name,
       email: req.body.email,
-      password: req.body.password,//check KAMRAN'S AUTHENTIFICATION
+      password: req.body.password, //check KAMRAN'S AUTHENTIFICATION
       zipcode: req.body.zipcode
-    }).then(function(response) {
+    }).then(function (response) {
       // then return the result using res.json
       res.json(response);
     });
-<<<<<<< HEAD
+
   });
 
   // GET USER INFO FOR PROFILE PAGE
-  app.get("/api/users", function(req,res){
-    db.Posts.findOne({ where: {id:req.id} }).then(function(userProfile) {
-      res.render("profile", {userProfile});
-=======
-
-  });
-};
-
-/*
-module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples ", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
->>>>>>> 34af0abb16b219a656e1dba6724baa2353ae8bf0
-    });
-  })
+  app.get("/api/users", function (req, res) {
+    db.Posts.findOne({
+      where: {
+        id: req.id
+      }
+    }).then(function (userProfile) {
+      res.render("profile", {
+        userProfile
+      });
 
 
-<<<<<<< HEAD
-}
-=======
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.json(dbExample);
     });
   });
+
+  /*
+  module.exports = function(app) {
+    // Get all examples
+    app.get("/api/examples ", function(req, res) {
+      db.Example.findAll({}).then(function(dbExamples) {
+        res.json(dbExamples);
+  >>>>>>> 34af0abb16b219a656e1dba6724baa2353ae8bf0
+      });
+    })
+
+
+
+  }
+  =======
+    // Delete an example by id
+    app.delete("/api/examples/:id", function(req, res) {
+      db.Example.destroy({ where: { id: req.params.id } }).then(function(
+        dbExample
+      ) {
+        res.json(dbExample);
+      });
+    });
+  };
+
+  */
+
 };
-
-*/
-
->>>>>>> 34af0abb16b219a656e1dba6724baa2353ae8bf0
-
