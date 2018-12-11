@@ -2,6 +2,10 @@
 var passport = require("passport");
 //var session = require("express-session");
 var router = require("express").Router();
+var db = require("../models");
+
+require('../config/oAuth.js'); // this is where our stretegy is....
+
 
 router.get("/signup", function (req, res) {
     res.render("signup")
@@ -16,6 +20,7 @@ router.get("/logout", function (req, res) {
 });
 router.get("/google/redirect", passport.authenticate("google"), (req, res) => {
     res.render("home")
+
 });
 
 module.exports = router;

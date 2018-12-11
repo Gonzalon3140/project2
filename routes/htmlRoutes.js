@@ -20,6 +20,11 @@ module.exports = function(app) {
     res.render("home");
   });
 
+  // Load category page - Kyle
+  /*app.get("/category", function(req, res) {
+    res.render("category");
+  });*/
+
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
     db.Example.findOne({

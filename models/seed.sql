@@ -1,3 +1,4 @@
+
 insert into usertables
     (gID, name, email, password, zipcode, thumbnail, createdAt, updatedAt)
 values
@@ -10,4 +11,5 @@ Values('tggmail', 'coding', 'sales', false, '2008-01-01 00:00:01', '2008-01-01 0
 INSERT INTO commentTables
     (body, createdAt, updatedAT userTableId)
 Values('coding', '2008-01-01 00:00:01', '2008-01-01 00:00:01', 1);
+
 

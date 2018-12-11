@@ -18,15 +18,19 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING
     },
     expired: {
+
       type: DataTypes.STRING,
       allowNull: true,
+
     },
     expirationDate: {
       type: DataTypes.STRING,
       allowNull: true,
+
       validate: {
         isDate: true
       }
+
     }
   });
 

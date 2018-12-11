@@ -1,4 +1,4 @@
-var env = require("dotenv").load();
+//var env = require("dotenv").load();
 var express = require("express");
 var exphbs = require("express-handlebars");
 var db = require("./models");
@@ -8,11 +8,12 @@ var passport = require("passport");
 var app = express();
 var PORT = process.env.PORT || 3000;
 
-//authentication
+app.use(passport.initialize());
+app.use(passport.session());
 var authRoutes = require("./routes/authRoutes");
 //var passportSetup = require("./config/oAuth");
-app.use("/auth", authRoutes);
 var cookieSession = require("cookie-session");
+
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
@@ -20,7 +21,10 @@ app.use(
   })
 );
 app.use(passport.initialize());
+//authentication
+app.use("/auth", authRoutes);
 app.use(passport.session());
+
 // var session = require("express-session");
 // app.use(session({secret:"123454321",resave:true,saveUninitialized:true}));
 // app.use(passport.initialize());
@@ -43,7 +47,9 @@ app.set("view engine", "handlebars");
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
+
 // var syncOptions = {};
+
 
 // If running a test, set syncOptions.force to true
 // clearing the `testdb`

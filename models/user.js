@@ -6,31 +6,26 @@ module.exports = function(sequelize, DataTypes) {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: { len: [8] }
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate: { isEmail: true }
+      allowNull: true
+      // validate: {isEmail: true}
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     zipcode: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     thumbnail: {
       type: DataTypes.STRING,
       allowNull: true
     }
-    // id: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    //   primaryKey: true
-    // },
   });
 
   userTable.associate = function(models) {

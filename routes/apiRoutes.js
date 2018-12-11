@@ -1,13 +1,18 @@
 var db = require("../models");
 var moment = require("moment");
+var authentic = require("../views/index.handlebars")
 
 module.exports = function (app) {
   var currentzip;
   /*---------------PAGE-POPULATOR----------------*/
 
+  //var to find by zipcode
+  //var location = authentic.location;
+
   // LOAD HOMEPAGE w/ all your posts and 10 most recent posts in your area
   // app.get("/api/user/:id", function (req, res) {
   app.get("/api/95618", function (req, res) {
+
     // get all user's posts
     currentzip = req.params.zip;
     db.postTable
