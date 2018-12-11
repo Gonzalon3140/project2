@@ -24,8 +24,8 @@ module.exports = function (app) {
       .then(function (userposts) {
         // console.log(userposts);
         var result = {
-          userfeed: userposts
-          // id: userposts[0].dataValues
+          userfeed: userposts[0].dataValues
+
         };
         console.log(result);
         res.render("home", result);
@@ -59,7 +59,7 @@ module.exports = function (app) {
 
   //   /*---------------POST-MANAGER------------------*/
 
-<<<<<<< HEAD
+
     db.postTable.create({
       title: req.body.title,
       body: req.body.body,
@@ -69,11 +69,7 @@ module.exports = function (app) {
       // then return the result using res.json
       res.json(response);
     });
-=======
-  //   // CREATE A POST
-  //   app.post("/api/posts", function (req, res) {
-  //     // Add sequelize code for creating a post using req.body,
->>>>>>> 8f97d9165df1801ca5e6c8d8bf91dc47c33de900
+
 
   //     db.postTable.create({
   //       title: req.body.title,
@@ -180,7 +176,7 @@ module.exports = function (app) {
   //       // then return the result using res.json
   //       res.json(response);
   //     });
-<<<<<<< HEAD
+
   // });
 
   // UPDATE YOUR POST
@@ -312,22 +308,168 @@ module.exports = function (app) {
   */
 
 };
-=======
 
-  //   });
+  // UPDATE YOUR POST
+  app.put("/api/posts", function (req, res) {
+    // Add code here to update a post using the values in req.body, where the id is equal to
+    db.postTable
+      .update({
+        title: req.body.title,
+        body: req.body.body
+      }, {
+        where: {
+          id: req.body.id
+        }
+      })
+      .then(function (response) {
+        // then return the result using res.json
+        res.json(response);
+      });
+  });
 
-  //   // GET USER INFO FOR PROFILE PAGE
-  //   app.get("/api/users", function (req, res) {
-  //     db.Posts.findOne({
-  //       where: {
-  //         id: req.id
-  //       }
-  //     }).then(function (userProfile) {
-  //       res.render("profile", {
-  //         userProfile
-  //       });
+  /*----------------COMMENT-MANAGER-----------------*/
 
+
+  // CREATE A COMMENT
+  app.post("/api/comments", function (req, res) {
+
+    // Add sequelize code for creating a post using req.body,
+    db.commentTable
+      .create({
+        body: req.body.body,
+        category: req.body.category
+      })
+      .then(function (response) {
+        // then return the result using res.json
+        res.json(response);
+      });
+  });
+
+
+
+  // DELETE ONE OF YOUR COMMENTS
+  app.delete("/api/comments/:id", function (req, res) {
+    // Add sequelize code to delete a post where the id is equal to req.params.id, 
+    db.commentTable.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (response) {
+      // then return the result using res.json
+      res.json(response);
+    });
+  });
+
+  // UPDATE YOUR COMMENT
+  app.put("/api/comments", function (req, res) {
+
+    // Add code here to update a post using the values in req.body, where the id is equal to
+    db.commentTable
+      .update({
+        body: req.body.body
+      }, {
+        where: {
+          id: req.body.id
+        }
+      })
+      .then(function (response) {
+        // then return the result using res.json
+        res.json(response);
+      });
+  });
+
+  /*-------------USER-MANAGER----------------*/
+
+  // ADD USER ACCOUNT
+  // ADD USER ACCOUNT
+  // app.post("/api/users", function (req, res) {
+  //   // Add sequelize code for creating a post using req.body,
+  //   var pass1 = $("#pass");
+  //   var pass2 = $("#confirm")
+
+  //   if (pass1 == pass2) {
+  //     console.log("passwords identical");
+  //     db.userTable.create({
+  //       username: $("#user"),
+  //       firstName: $("#first"),
+  //       lastName: $("#last"),
+  //       email: $("#email"),
+  //       password: $("#pass"),
+  //       zipcode: $("#zip")
+  //     }).then(function (response) {
+  //       // log success
+  //       console.log("account activated");
+  //       // then return the result using res.json
+  //       var newAccount = response.comment[0].dataValues;
+  //       res.json(newAccount);
+  //       //inform user of success
+  //       alert("Your account is succesfully added");
+  //       //return to login page
+  //       res.render("/home");
   //     });
+  //   } else {
+  //     console.log("passwords not identical");
+  //     alert("passwords are not identical, please re-enter");
+  //   }
+  // });
+  // app.post("/api/users", function (req, res) {
+  //   // Add sequelize code for creating a post using req.body,
+
+  //   db.userTable.create({
+  //     name: req.body.name,
+  //     email: req.body.email,
+  //     password: req.body.password, //check KAMRAN'S AUTHENTIFICATION
+  //     zipcode: req.body.zipcode
+  //   }).then(function (response) {
+  //     // then return the result using res.json
+  //     res.json(response);
   //   });
+
+
+  // });
+
+  // GET USER INFO FOR PROFILE PAGE
+  app.get("/api/users", function (req, res) {
+    db.Posts.findOne({
+      where: {
+        id: req.id
+      }
+    }).then(function (userProfile) {
+      res.render("profile", {
+        userProfile
+      });
+
+
+    });
+  });
+
+  /*
+  module.exports = function(app) {
+    // Get all examples
+    app.get("/api/examples ", function(req, res) {
+      db.Example.findAll({}).then(function(dbExamples) {
+        res.json(dbExamples);
+ 
+      });
+    })
+
+
+
+  }
+
+    // Delete an example by id
+    app.delete("/api/examples/:id", function(req, res) {
+      db.Example.destroy({ where: { id: req.params.id } }).then(function(
+        dbExample
+      ) {
+        res.json(dbExample);
+      });
+    });
+  };
+
+  */
+
 };
->>>>>>> 8f97d9165df1801ca5e6c8d8bf91dc47c33de900
+
+};
+
