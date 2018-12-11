@@ -1,21 +1,21 @@
-<div class="container home">
+<div class="container home" id="{{storeZip}} {{storeUser}}">
   <div class="row">
     <a href="/auth/logout"><button class="btn btn-secondary">Logout</button></a>
     
     <!--START OF TEST CODE-->
-    <div class="col border border-white">
+    <!--<div class="col border border-white">
       TESTING LOOP THROUGH OBJECT DISPLAY
-      {{#each userfeed}}
+      {{#each userposts}}
         <div class="comment">
-          <h2>{{userfeed.title}}</h2>
-          {{userfeed.body}}
-          <!-- Button trigger modal -->
+          <h2>{{userposts.title}}</h2>
+          {{userposts.body}}
+          Button trigger modal
           <button type="button" id="{{userfeed.id}}" class="btn btn-primary" data-toggle="modal" data-target="#readPost">
             view
           </button>
         </div>
       {{/each}}
-    </div>
+    </div>-->
     <!--END OF TEST CODE-->
 
     <div class="col border border-white">
@@ -66,9 +66,9 @@
               {{body}}
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-id={{id}}><a href="/api/posts/:id">Delete</a></button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-id={{id}}><a href="/api/posts">Comments</a></button>
-              <button type="button" class="btn btn-primary"><a href="/api/posts" data-id={{id}}>Save changes</a></button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-id={{postID}}><a href="/api/posts/:id">Delete</a></button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-id={{postID}}><a href="/api/posts">Comments</a></button>
+              <button type="button" class="btn btn-primary"><a href="/api/posts" data-id={{postID}}>Save changes</a></button>
               <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/home">Close</a></button>
             </div>
           </div>
@@ -181,4 +181,6 @@
 })</script> 
 
 <link href="https://fonts.googleapis.com/css?family=Unlock" rel="stylesheet"> 
+
+
 
