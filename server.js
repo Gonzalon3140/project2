@@ -13,7 +13,7 @@ app.use(passport.session());
 var authRoutes = require("./routes/authRoutes");
 //var passportSetup = require("./config/oAuth");
 var cookieSession = require("cookie-session");
-app.use(cookieSession({maxAge:24*60*60*1000,keys:[keys.session.cookieKey]}));
+app.use(cookieSession({maxAge:60000,keys:[keys.session.cookieKey]}));
 
 //authentication
 app.use("/auth", authRoutes);
