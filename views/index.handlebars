@@ -6,29 +6,28 @@
         <img class="header" src="/images/header.JPG">
       </div>
       <div class="col-8 main">
-        
+
         <h2>Log In Da Hood</h2>
         <h5>You MUST have an account to post and access information</h5>
         <h5>Log in or create an account</h5>
-        <form class="clearfix mb-4" action="POST">
+        <form action="/api/login" method="POST" class="clearfix mb-4">
           <div class="form-group">
             <label for="example-text">Email</label>
-            <input type="text" id="{{logUser}}" class="form-control" aria-describedby="example-text" placeholder="Enter email here">
+            <input type="text" name="email" id="{{logUser}}" class="form-control" aria-describedby="example-text"
+              placeholder="Enter email here">
           </div>
           <div class="form-group">
             <label for="example-text">Password</label>
-            <input type="text" id="{{logPass}}" class="form-control" aria-describedby="example-text" placeholder="Password must include at least one number and one symbol">
+            <input type="text" name="password" id="{{logPass}}" class="form-control" aria-describedby="example-text"
+              placeholder="Password must include at least one number and one symbol">
           </div>
-          <a href="/login"><button type="button" id="submit" class="btn btn-primary float-left">Log-In</button></a>
-          {{!-- <a href="/auth/google"><button class = "btn btn-primary float-left google-btn">Use Google</button></a> --}}
+          <input type="submit" value="Submit">
+          {{!-- <a href="/login"><button type="button" id="submit" class="btn btn-primary float-left">Log-In</button></a>
+          --}}
+
           <a href="/auth/signup"><button type="button" class="btn btn-secondary float-right">Create Account</button></a>
         </form>
-        <a href="/auth/google"><button style="background-color: red" class="btn btn-secondary float-left">Use Google</button></a>
       </div>
     </div>
   </div>
 </div>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Unlock" rel="stylesheet"> 

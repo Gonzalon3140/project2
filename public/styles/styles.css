@@ -8,19 +8,13 @@ body {
 }
 
 .main {
-  background-color: white; 
+  background-color: white;
 }
 
 .container {
   padding: 20px;
-  margin: 20px; 
-  align-content: center;
-}
-
-div.container.home {
-  background-color: lightsalmon; 
-  padding: 20px;
   margin: 20px;
+  align-content: center;
 }
 
 .header {
@@ -29,36 +23,25 @@ div.container.home {
   border: solid 1px;
 }
 
-.col, .col-5 {
-  padding:20px;
-}
-
 button {
   padding: 20px;
   margin: 20px;
 }
 
-.modal {
-  display:none;
-  position: fixed;
-  width:100%;
-  height:100%;
-  top:0;
-  left:0;
-  background:rgba(0,0,0,0.4);
+.home-row {
+  background-color: salmon;
 }
 
-.modal-visible {
-  display:block;
+h3 {
+  font-size: 20px;
 }
 
-.modal-body {
-  width:300px;
-  height:200px;
-  background:#fff;
-  padding:20px;
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform: translate(-50%, -50%);
+div.col.s4 {
+  border-style: solid;
+  border-color: white;
+  border-width: 1px;
+}
+
+.home-title {
+  background: white;
 }

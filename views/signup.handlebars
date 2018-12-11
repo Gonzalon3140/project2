@@ -1,3 +1,12 @@
+{{!-- <form action="/api/users" method="POST">
+  <input type="text" name="name">
+  <input type="text" name="email">
+  <input type="text" name="zipcode">
+  <input type="text" name="password">
+  <input type="submit" value="Submit">
+
+</form> --}}
+
 <div id="home">
   <div class="container">
     <div class="row">
@@ -6,50 +15,40 @@
       </div>
       <div class="col-8 main">
         <h2>Sign Up to get In Da Hood</h2>
-        
-        <form class="clearfix mb-4" action="POST">
+
+        <form action="/api/users" method="POST" class="clearfix mb-4" action="POST">
+
           <div class="form-group">
-            <label for="example-text">Username</label>
-            <input type="text" id="user" class="form-control" aria-describedby="example-text" placeholder="Enter username here">
+            <label for="example-text">Full Name</label>
+            <input type="text" name="name" id="first" class="form-control" aria-describedby="example-text" placeholder="John Smith">
             {{name}}
           </div>
-          <div class="form-group">
-            <label for="example-text">First Name</label>
-            <input type="text" id="first" class="form-control" aria-describedby="example-text" placeholder="John">
-            <!--has this structure of username, firstname, lastname been updated in Tony's database?-->
-          </div>
-          <div class="form-group">
-            <label for="example-text">Last Name</label>
-            <input type="text" id="last" class="form-control" aria-describedby="example-text" placeholder="Smith">
-            <!--has this structure of username, firstname, lastname been updated in Tony's database?-->
-          </div>
+
           <div class="form-group">
             <label for="example-text">Email</label>
-            <input type="text" id="email" class="form-control" aria-describedby="example-text" placeholder="john.smith@gmail.com">
+            <input type="text" name="email" id="email" class="form-control" aria-describedby="example-text" placeholder="john.smith@gmail.com">
             {{email}}
           </div>
-          <div class="form-group">
-            <label for="example-text">Zipcode</label>
-            <input type="text" id="zip" class="form-control" aria-describedby="example-text" placeholder="95411">
-            {{zipcode}}
-          </div>
+
           <div class="form-group">
             <label for="example-text">Password</label>
-            <input type="text" id="pass" class="form-control" aria-describedby="example-text" placeholder="Password must include at least one number and one symbol">
-            {{password}} <!--does this conflict w/ Kamran's password verification?-->
+            <input type="text" name="password" id="pass" class="form-control" aria-describedby="example-text"
+              placeholder="Password must include at least one number and one symbol">
+            {{password}}
           </div>
+
           <div class="form-group">
-            <label for="example-text">Confirm Password</label>
-            <input type="text" id="confirm" class="form-control" aria-describedby="example-text" placeholder="Reenter password here">
+            <label for="example-text">Zipcode</label>
+            <input type="text" name="zipcode" id="zip" class="form-control" aria-describedby="example-text" placeholder="95411">
+            {{zipcode}}
           </div>
-          <button type="button" id="signup-btn" class="btn btn-primary float-left"><a href="/api/users">Submit</a></button>
-          
+
+          <input type="submit" value="Submit">
+          {{!-- <a href="/api/users"><button type="button" id="signup-btn" class="btn btn-primary float-left">Submit</button></a>
+          --}}
+
         </form>
       </div>
     </div>
   </div>
 </div>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Unlock" rel="stylesheet"> 
