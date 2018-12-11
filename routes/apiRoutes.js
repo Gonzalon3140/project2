@@ -42,6 +42,7 @@ module.exports = function (app) {
     // });
   });
 
+
   app.post("/api/users", function (req, res) {
     db.userTable
       .create({
@@ -117,6 +118,7 @@ module.exports = function (app) {
 
 
 
+
   // UPDATE YOUR POST
   app.put("/api/posts", function (req, res) {
     // Add code here to update a post using the values in req.body, where the id is equal to
@@ -185,6 +187,7 @@ module.exports = function (app) {
         res.json(response);
       });
   });
+
 
 
 
