@@ -33,27 +33,17 @@
     </div>
     <div class="col-5 border border-white">
       Your Posts
-      {{#each yourPosts}}
-        <div class="comment">
-          <h2>{{yourTitle}}</h2>
-          {{yourBody}}
-          <!-- Button trigger modal -->
-          <button type="button" id="{{yourPostID}}" class="btn btn-primary" data-toggle="modal" data-target="#readPost">
-            view
-          </button>
-        </div>
-      {{/each}}
 
-
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createPost">
-        Create a post
+      {{userfeed}}
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        Launch demo modal
       </button>
 
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
 
-<!--MODALS-MODALS-MODALS-MODALS-MODALS-->
-
-  <!-- MODAL 1: post pop-up -->
-      <div class="modal fade" id="readPost" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -62,7 +52,11 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body {{category}}"> <!--will this allow form entry, with the default text being pulled from the db?-->
+
+            <div class="modal-body">
+              <!--will this allow form entry, with the default text being pulled from the db?-->
+              {{title}}
+
               {{body}}
             </div>
             <div class="modal-footer">
@@ -152,12 +146,12 @@
       <form>
         <div class="form-group">
           <select class="form-control" id="category-search">
-          <option>Choose a category</option>
-          <option>Event</option>
-          <option>Free</option>
-          <option>Report (Roadwork, Suspicious Activity, etc)</option>
-          <option>For Sale/Service Offered</option>
-          <option>Missed Connection</option>
+            <option>Choose a category</option>
+            <option>Event</option>
+            <option>Free</option>
+            <option>Report (Roadwork, Suspicious Activity, etc)</option>
+            <option>For Sale/Service Offered</option>
+            <option>Missed Connection</option>
           </select>
         </div>
         <div class="form-group">
@@ -165,8 +159,8 @@
           <input type="integer" class="form-control" id="category-zip" placeholder="95411">
         </div>
         <div class="form-group">
-        <label>Keyword/s (Optional)</label>
-        <input type="text" class="form-control" id="category-keyword" placeholder="bikes">
+          <label>Keyword/s (Optional)</label>
+          <input type="text" class="form-control" id="category-keyword" placeholder="bikes">
         </div>
         <button type="button" id="search-btn" class="btn btn-primary float-right">Submit</button>
       </form>
@@ -177,10 +171,10 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
 <script>$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})</script> 
+    $('#myInput').trigger('focus')
+  })</script>
 
-<link href="https://fonts.googleapis.com/css?family=Unlock" rel="stylesheet"> 
+
 
 
 
