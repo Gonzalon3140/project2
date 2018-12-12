@@ -7,9 +7,9 @@ module.exports = function(app) {
   });
 
   // Load signup page
-  app.get("/auth/signup", function(req, res) {
-    res.render("signup");
-  });
+  // app.get("/auth/signup", function(req, res) {
+  //   res.render("signup");
+  // });
 
   // Load home page
   app.get("/home", function(req, res) {

@@ -44,23 +44,23 @@ module.exports = function (app) {
   });
 
 
-  app.post("/api/users", function (req, res) {
-    db.userTable
-      .create({
-        name: req.body.name,
-        email: req.body.email,
-        zipcode: req.body.zipcode,
-        password: req.body.password
-      })
-      .then(function (response) {
+  // app.post("/api/users", function (req, res) {
+  //   db.userTable
+  //     .create({
+  //       name: req.body.name,
+  //       email: req.body.email,
+  //       zipcode: req.body.zipcode,
+  //       password: req.body.password
+  //     })
+  //     .then(function (response) {
 
-        // var result = response[0].dataValues
+  //       // var result = response[0].dataValues
 
-        res.redirect("/home")
-        console.log(response);
-        // res.render("home", result);
-      });
-  });
+  //       res.redirect("/home")
+  //       console.log(response);
+  //       // res.render("home", result);
+  //     });
+  // });
 
   app.post("/api/post", function (req, res) {
     console.log(req);
@@ -82,24 +82,24 @@ module.exports = function (app) {
 
   //app.post("/api/login", passport.authenticate("local",{ successRedirect:"/home", failureRedirect:"/"}));
 
-  app.post("/api/login", function (req, res) {
-    console.log(req.body.email, req.body.password);
-    db.userTable.findAll({
-        where: {email:req.body.email,password:req.body.password}
-      })
-      .then(function (response) {
-        console.log("user found");
-        var email=response.email;
-        currentZip = response.zipcode;
-        currentID = response.id;
-        if (!email) {
-          console.log(response);
-          res.redirect("/auth/signup");
-        } else {
-          res.redirect("/home")
-        }
-      })
-  });
+  // app.post("/api/login", function (req, res) {
+  //   console.log(req.body.email, req.body.password);
+  //   db.userTable.findAll({
+  //       where: {email:req.body.email,password:req.body.password}
+  //     })
+  //     .then(function (response) {
+  //       console.log("user found");
+  //       var email=response.email;
+  //       currentZip = response.zipcode;
+  //       currentID = response.id;
+  //       if (!email) {
+  //         console.log(response);
+  //         res.redirect("/auth/signup");
+  //       } else {
+  //         res.redirect("/home")
+  //       }
+  //     })
+  // });
 
   app.get("/home", function (req, res) {
 
