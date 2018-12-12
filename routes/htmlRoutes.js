@@ -1,9 +1,5 @@
 var db = require("../models");
 
-// These are really AUTHORIZATION requirements - should move to authRoutes.js
-// var passport = require("passport");
-// These are really AUTHORIZATION requirements - should move to authRoutes.js
-
 module.exports = function(app) {
   // Load index/log-in page
   app.get("/", function(req, res) {

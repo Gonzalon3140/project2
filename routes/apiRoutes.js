@@ -1,6 +1,7 @@
 var db = require("../models");
 var moment = require("moment");
 var authentic = require("../views/index.handlebars")
+var passport = require("passport");
 
 module.exports = function (app) {
   var currentzip;
@@ -77,26 +78,26 @@ module.exports = function (app) {
         // res.render("home", result);
       });
   });
+  app.post("/api/login", passport.authenticate("local",{failureRedirect:"/",successRedirect:"/home"}));
+  // app.post("/api/login", function (req, res) {
+  //   var email = req.body.email
+  //   console.log(req.body.email, req.body.password);
+  //   db.userTable.findOne({
+  //       where: {
+  //         email: req.body.email
+  //       }
+  //     })
+  //     .then(function (response) {
+  //       if (email) {
+  //         console.log("user found");
+  //         res.redirect("/home")
 
-  app.post("/api/login", function (req, res) {
-    var email = req.body.email
-    console.log(req.body.email, req.body.password);
-    db.userTable.findOne({
-        where: {
-          email: req.body.email
-        }
-      })
-      .then(function (response) {
-        if (email) {
-          console.log("user found");
-          res.redirect("/home")
-
-        } else {
-          console.log(response);
-          res.redirect("/auth/signup");
-        }
-      })
-  });
+  //       } else {
+  //         console.log(response);
+  //         res.redirect("/auth/signup");
+  //       }
+  //     })
+  // });
 
   app.get("/home", function (req, res) {
 
