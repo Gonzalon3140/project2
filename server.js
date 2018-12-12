@@ -15,7 +15,6 @@ app.use(passport.session());
 var cookieParser = require("cookie-parser");
 app.use(cookieParser());
 app.use(require("express-session")({secret:"123454321"}));
-//app.use(passport.initialize());
 //authentication
 //app.use("/auth", authRoutes);
 //app.use(passport.session());
@@ -29,7 +28,6 @@ passport.deserializeUser((id,done)=>{
       done(null,user);
   });
 });
-
 
 passport.use("local", new LocalStrategy(
   {

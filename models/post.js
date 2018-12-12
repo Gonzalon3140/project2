@@ -1,3 +1,5 @@
+var moment=require("moment");
+
 module.exports = function (sequelize, DataTypes) {
   var postTable = sequelize.define("postTable", {
     title: {
@@ -18,19 +20,17 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING
     },
     expired: {
-
-      type: DataTypes.STRING,
+      type: DataTypes.BOOLEAN,
       allowNull: true,
-
+      defaultValue:false
     },
     expirationDate: {
-      type: DataTypes.STRING,
-      allowNull: true,
-
+      type: DataTypes.DATE,
+      defaultValue: moment().add(3,"d").format("YYYY-MM-DD HH:mm:ss"),
+      allowNull: false,
       validate: {
         isDate: true
       }
-
     }
   });
 

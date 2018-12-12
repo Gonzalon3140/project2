@@ -5,9 +5,12 @@
   {{!-- This is the left column to auto populate the 10 most recent posts for your area --}}
   <div class="col s4">
     <h3>Most Recent Top 10 Posts in Your Area</h3>
-    {{#each userfeed}}
-    <h5>{{userfeed.body}}</h5>
-    {{/each}}
+    <ul>
+      {{#each stuff}}
+      <h5>{{stuff.title}}</h5>
+      <h5>{{stuff.body}}</h5>
+      {{/each}}
+    </ul>
     <div class="comment">
       {{!-- <h2>{{recent.title}}</h2>
       {{recent.body}} --}}
@@ -75,46 +78,38 @@
     <!-- Modal Structure -->
     <div id="modal1" class="modal modal-fixed-footer">
       <div class="modal-content">
-        {{!-- form goes here --}}
-        <div class="input-field col s12">
-          <select>
-            <option value="">Choose your Category</option>
-            <option value="event">Event</option>
-            <option value="free">Free</option>
-            <option value="report">Report (Roadwork, Suspicious Activity, etc)</option>
-            <option value="sale">For Sale/Service Offered</option>
-            <option value="missed">Missed Connections</option>
-          </select>
-          <label>Category Select</label>
-        </div>
-
-        <div class="row">
-          <form class="col s12">
-            <div class="row">
+        <form class="col s12" method="post" action="/api/post">{{!-- form goes here --}}
+          <div class="input-field col s12">
+            <select name="category">
+              <option value="">Choose your Category</option>
+              <option value="Event">Event</option>
+              <option value="Free">Free</option>
+              <option value="Report">Report (Roadwork, Suspicious Activity, etc)</option>
+              <option value="Sale">For Sale/Service Offered</option>
+              <option value="Missed">Missed Connections</option>
+            </select>
+            <label>Category Select</label>
+          </div>
+          {{!-- <div class="row">
+            <div class="row"> --}}
               <div class="input-field col s12">
-                <textarea id="textarea1" class="materialize-textarea"></textarea>
                 <label for="textarea1">Title</label>
+                <input name="title" type="text" id="textarea1" class="materialize-input">
               </div>
-            </div>
-          </form>
-        </div>
-
-        <div class="row">
-          <form class="col s12">
-            <div class="row">
+            {{!-- </div>
+          </div> --}}
+          {{!-- <div class="row">
+            <div class="row"> --}}
               <div class="input-field col s12">
-                <textarea id="textarea1" class="materialize-textarea"></textarea>
+                <textarea type="text" name="body" id="textarea1" class="materialize-input"></textarea>
                 <label for="textarea1">Add details about your post</label>
               </div>
-            </div>
-          </form>
-        </div>
-
-      </div>
-
-      <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Submit</a>
-      </div>
+            {{!-- </div>
+          </div> --}}
+          <div class="modal-footer">
+            <input type="submit" class="modal-close waves-effect waves-green btn-flat" value="Submit">
+          </div>
+        </form>
     </div>
   </div>
 
