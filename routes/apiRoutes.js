@@ -1,9 +1,13 @@
 var db = require("../models");
 var moment = require("moment");
 var authentic = require("../views/index.handlebars")
+var passport = require("passport");
+
 
 module.exports = function (app) {
-  var currentzip;
+  var currentZip;
+  var currentID;
+  
   /*---------------PAGE-POPULATOR----------------*/
 
 
@@ -11,14 +15,11 @@ module.exports = function (app) {
   // LOAD HOMEPAGE w/ all your posts and 10 most recent posts in your area
   // app.get("/api/user/:id", function (req, res) {
   app.get("/api/95618", function (req, res) {
-
     // get all user's posts
     // currentzip = req.params.zip;
-    db.postTable
+    db.userTable
       .findAll({
-        where: {
-          id: "1"
-        }
+        where: {id: "1"}
       })
       .then(function (userposts) {
         // console.log(userposts);
@@ -43,80 +44,86 @@ module.exports = function (app) {
   });
 
 
-  app.post("/api/users", function (req, res) {
-    db.userTable
-      .create({
-        name: req.body.name,
-        email: req.body.email,
-        zipcode: req.body.zipcode,
-        password: req.body.password
-      })
-      .then(function (response) {
+  // app.post("/api/users", function (req, res) {
+  //   db.userTable
+  //     .create({
+  //       name: req.body.name,
+  //       email: req.body.email,
+  //       zipcode: req.body.zipcode,
+  //       password: req.body.password
+  //     })
+  //     .then(function (response) {
 
-        // var result = response[0].dataValues
+  //       // var result = response[0].dataValues
 
-        res.redirect("/home")
-        console.log(response);
-        // res.render("home", result);
-      });
-  });
+  //       res.redirect("/home")
+  //       console.log(response);
+  //       // res.render("home", result);
+  //     });
+  // });
+
   app.post("/api/post", function (req, res) {
-    db.userTable
+    console.log(req);
+    db.postTable
       .create({
         title: req.body.name,
         body: req.body.email,
         category: req.body.zipcode,
-        // password: req.body.password
+        expired:false,
+        expirationDate:moment.now()
       })
       .then(function (response) {
-
         // var result = response[0].dataValues
-
         res.redirect("/home");
         console.log(response);
         // res.render("home", result);
       });
   });
 
-  app.post("/api/login", function (req, res) {
-    var email = req.body.email
-    console.log(req.body.email, req.body.password);
-    db.userTable.findOne({
-        where: {
-          email: req.body.email
-        }
-      })
-      .then(function (response) {
-        if (email) {
-          console.log("user found");
-          res.redirect("/home")
+  //app.post("/api/login", passport.authenticate("local",{ successRedirect:"/home", failureRedirect:"/"}));
 
-        } else {
-          console.log(response);
-          res.redirect("/auth/signup");
-        }
-      })
-  });
+  // app.post("/api/login", function (req, res) {
+  //   console.log(req.body.email, req.body.password);
+  //   db.userTable.findAll({
+  //       where: {email:req.body.email,password:req.body.password}
+  //     })
+  //     .then(function (response) {
+  //       console.log("user found");
+  //       var email=response.email;
+  //       currentZip = response.zipcode;
+  //       currentID = response.id;
+  //       if (!email) {
+  //         console.log(response);
+  //         res.redirect("/auth/signup");
+  //       } else {
+  //         res.redirect("/home")
+  //       }
+  //     })
+  // });
 
   app.get("/home", function (req, res) {
 
     // get all user's posts
     // currentzip = req.params.zip;
+    console.log("routed to home");
     db.postTable
       .findAll()
       .then(function (userposts) {
-        // console.log(userposts);
-        var result = {
-          userfeed: userposts[0].dataValues
-        };
-        console.log(result);
-        res.render("home", result);
+        //console.log(userposts);
+        var stuff=[];
+        for (i=0;i<userposts.length;i++){
+          stuff.push(userposts[i].dataValues)
+        }
+        // var stuff={
+        //   title: "yo",
+        //   body: "right here"
+        // }
+        console.log(stuff);
+        res.render("home", stuff);
       });
 
 
   });
-
-
 
 
   // UPDATE YOUR POST

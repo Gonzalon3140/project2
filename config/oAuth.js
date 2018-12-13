@@ -44,15 +44,3 @@ exports.default = passport.use(
         })       
     })
 )
-
-
-// module.exports = function(passport,user){
-//     var User = user;
-//     var LocalStrategy = require("passport-local").Strategy;
-// };
-
-// passport.use("local-signup", new LocalStrategy(
-//     {username:"email",
-//     password:"password",
-//     passReqToCallback:true},
-// ));

@@ -1,9 +1,10 @@
 module.exports = function (sequelize, DataTypes) {
   var userTable = sequelize.define("userTable", {
-    // gID: {
-    //   type: DataTypes.STRING,
-    //   allowNull: true
-    // },
+    id: {
+      autoIncrement:true,
+      primaryKey: true,
+      type: DataTypes.INTEGER      
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: true

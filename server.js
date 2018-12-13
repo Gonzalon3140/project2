@@ -2,51 +2,64 @@
 var express = require("express");
 var exphbs = require("express-handlebars");
 var db = require("./models");
-var keys = require("./config/keys");
+//var keys = require("./config/keys");
 var passport = require("passport");
 
 var app = express();
 var PORT = process.env.PORT || 3000;
-
+//var LocalStrategy = require("passport-local").Strategy;
 app.use(passport.initialize());
 app.use(passport.session());
-var authRoutes = require("./routes/authRoutes");
+//var authRoutes = require("./routes/authRoutes");
 //var passportSetup = require("./config/oAuth");
-var cookieSession = require("cookie-session");
-
-app.use(
-  cookieSession({
-    maxAge: 24 * 60 * 60 * 1000,
-    keys: [keys.session.cookieKey]
-  })
-);
-app.use(passport.initialize());
+var cookieParser = require("cookie-parser");
+app.use(cookieParser());
+//app.use(require("express-session")({secret:"123454321"}));
 //authentication
-app.use("/auth", authRoutes);
-app.use(passport.session());
+//app.use("/auth", authRoutes);
+//app.use(passport.session());
 
-// var session = require("express-session");
-// app.use(session({secret:"123454321",resave:true,saveUninitialized:true}));
-// app.use(passport.initialize());
-// app.use(passport.session());
+passport.serializeUser((user,done)=>{
+  done(null,user.id);
+});
+
+passport.deserializeUser((id,done)=>{
+  user.findById(id).then((user)=>{
+      done(null,user);
+  });
+});
+
+// passport.use("local", new LocalStrategy(
+//   {
+//     usernameField:"email",
+//     passwordField:"password",
+//     passReqtoCallback:true
+//   },
+//   function(req, email, password, done) {
+//     db.userTable.findOne({where:{email:email}}).then (function(err, user) {
+//       if (err) { return done(err); }
+//       if (!user) { return done(null, false, {message:"badness"})}
+//       if (user.password != password) { return done(null, false); }
+//       return done(null, user);
+//     }).catch(function(err){
+//       console.log(err);
+//     })
+// }));
 
 // Middleware
-app.use(express.urlencoded({
-  extended: false
-}));
+app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(express.static("public"));
 
 // Handlebars
-app.engine("handlebars", exphbs({
-  defaultLayout: "main"
-}));
+app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
 
 // Routes
-require("./routes/apiRoutes")(app);
+require("./routes/apiRoutes")(app,passport);
 require("./routes/htmlRoutes")(app);
-
+require("./routes/authRoutes");
+require("./config/passport")(passport, db.userTable);
 
 // var syncOptions = {};
 
