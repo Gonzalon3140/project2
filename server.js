@@ -29,22 +29,6 @@ passport.deserializeUser((id,done)=>{
   });
 });
 
-// passport.use("local", new LocalStrategy(
-//   {
-//     usernameField:"email",
-//     passwordField:"password",
-//     passReqtoCallback:true
-//   },
-//   function(req, email, password, done) {
-//     db.userTable.findOne({where:{email:email}}).then (function(err, user) {
-//       if (err) { return done(err); }
-//       if (!user) { return done(null, false, {message:"badness"})}
-//       if (user.password != password) { return done(null, false); }
-//       return done(null, user);
-//     }).catch(function(err){
-//       console.log(err);
-//     })
-// }));
 
 // Middleware
 app.use(express.urlencoded({extended: false}));

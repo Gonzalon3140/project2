@@ -3,7 +3,6 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 var keys = require("./keys");
 var db = require("../models");
 //var User = require("../models/user"); //need to use usertable model
-//var bCrypt = require("bcrypt-nodejs");
 
 passport.serializeUser((user,done)=>{
     done(null,user.id);

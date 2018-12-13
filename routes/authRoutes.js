@@ -1,3 +1,25 @@
+var authController = require("../controllers/authController");
+
+module.exports = function(app, passport) {
+
+  app.post("/signup",
+    passport.authenticate("local-signup", {
+      successRedirect: "/home",
+      failureRedirect: "/"
+    })
+  );
+  app.get("/signup", authController.signup);
+  app.get("/", authController.signin);
+  app.get("/signin", authController.signin);
+  app.post("/signin",
+    passport.authenticate("local-signin", {
+      successRedirect: "/home",
+      failureRedirect: "/poop"
+    })
+  );
+  app.get("/logout", authController.logout);
+
+};
 
 // var passport = require("passport");
 // //var session = require("express-session");
@@ -25,26 +47,3 @@
 
 // module.exports = router;
 
-var authController = require("../controllers/authController");
-
-module.exports = function(app, passport) {
-  app.post(
-    "/signup",
-    passport.authenticate("local-signup", {
-      successRedirect: "/home",
-      failureRedirect: "/"
-    })
-  );
-
-  app.get("/signup", authController.signup);
-  app.get("/", authController.signin);
-  app.get("/signin", authController.signin);
-
-  app.post(
-    "/signin",
-    passport.authenticate("local-signin", {
-      successRedirect: "/home",
-      failureRedirect: "/poop"
-    })
-  );
-};
