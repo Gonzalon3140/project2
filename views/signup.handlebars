@@ -7,7 +7,7 @@
 
 </form> --}}
 
-<div id="home">
+{{!-- <div id="home">
   <div class="container">
     <div class="row">
       <div class="col-2">
@@ -47,6 +47,30 @@
           {{!-- <a href="/api/users"><button type="button" id="signup-btn" class="btn btn-primary float-left">Submit</button></a>
           --}}
 
+        </form>
+      </div>
+    </div>
+  </div>
+</div> --}}
+
+<div id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-2">
+        <img class="header" src="/images/header.JPG">
+      </div>
+      <div class="col-8 main">
+        <h2>Sign Up to get In Da Hood</h2>
+        <form id="signup" name="signup" method="post" action="/signup">
+          <label for="email">Email Address</label>
+          <input class="text" name="email" type="email" />
+          <label for="name">Firstname</label>
+          <input name="name" type="text" />
+          <label for="zipcode">ZIP</label>
+          <input name="zipcode" type="text" />
+          <label for="password">Password</label>
+          <input name="password" type="password" />
+          <input class="btn" type="submit" value="Sign Up" />
         </form>
       </div>
     </div>

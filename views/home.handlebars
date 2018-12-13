@@ -1,5 +1,5 @@
-<h1 class="home-title">User Homepage</h1>
-
+<h1 class="home-title">{{name}}'s User Homepage</h1>
+<h2><a href="/posts/{{zip}}">Feed For</a></h2>
 <div class="row home-row">
 
   {{!-- This is the left column to auto populate the 10 most recent posts for your area --}}
@@ -7,14 +7,11 @@
     <h3>Most Recent Top 10 Posts in Your Area</h3>
     <ul>
       {{#each stuff}}
-      <h5>{{stuff.title}}</h5>
-      <h5>{{stuff.body}}</h5>
+      <h5>Title: {{title}}</h5>
+      <h5>Body: {{body}}</h5>
+      <h5>Category: {{category}}</h5>
       {{/each}}
     </ul>
-    <div class="comment">
-      {{!-- <h2>{{recent.title}}</h2>
-      {{recent.body}} --}}
-    </div>
   </div>
 
   {{!-- This the the middle column for searching for other people's posts --}}

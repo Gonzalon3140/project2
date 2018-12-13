@@ -28,17 +28,17 @@
 var authController = require("../controllers/authController");
 
 module.exports = function(app, passport) {
+  app.get("/signup", authController.signup);
+  app.get("/", authController.signin);
+  app.get("/signin", authController.signin);
+  app.get("/logout", authController.logout);
   app.post(
     "/signup",
     passport.authenticate("local-signup", {
       successRedirect: "/home",
-      failureRedirect: "/"
+      failureRedirect: "/poop"
     })
   );
-
-  app.get("/signup", authController.signup);
-  app.get("/", authController.signin);
-  app.get("/signin", authController.signin);
 
   app.post(
     "/signin",
