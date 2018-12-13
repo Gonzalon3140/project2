@@ -1,17 +1,20 @@
 var authController = require("../controllers/authController");
 
 module.exports = function(app, passport) {
-
-  app.post("/signup",
-    passport.authenticate("local-signup", {
-      successRedirect: "/home",
-      failureRedirect: "/"
-    })
-  );
   app.get("/signup", authController.signup);
   app.get("/", authController.signin);
   app.get("/signin", authController.signin);
-  app.post("/signin",
+  app.get("/logout", authController.logout);
+  app.post(
+    "/signup",
+    passport.authenticate("local-signup", {
+      successRedirect: "/home",
+      failureRedirect: "/poop"
+    })
+  );
+
+  app.post(
+    "/signin",
     passport.authenticate("local-signin", {
       successRedirect: "/home",
       failureRedirect: "/poop"
@@ -45,5 +48,9 @@ module.exports = function(app, passport) {
 
 // });
 
+<<<<<<< HEAD
 // module.exports = router;
 
+=======
+// module.exports = router;
+>>>>>>> 5f0030f6fcec0a786d2978f64baa23a41e4e22e0
