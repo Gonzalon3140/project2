@@ -48,9 +48,4 @@ module.exports = function(app, passport) {
 
 // });
 
-<<<<<<< HEAD
 // module.exports = router;
-
-=======
-// module.exports = router;
->>>>>>> 5f0030f6fcec0a786d2978f64baa23a41e4e22e0
