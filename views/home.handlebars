@@ -1,5 +1,8 @@
-<h1 class="home-title">{{name}}'s User Homepage</h1>
-<h2><a href="/posts/{{zip}}">Feed For</a></h2>
+<h1 class="home-title">{{stuff.name}}'s Hood</h1>
+<form action="/logout" method="get">
+<input type="submit" class="btn secondary-btn" id="logoutbtn" value="Logout">
+</form>
+<h2>Feed For{{stuff.zip}}</h2>
 <div class="row home-row">
 
   {{!-- This is the left column to auto populate the 10 most recent posts for your area --}}
@@ -7,9 +10,11 @@
     <h3>Most Recent Top 10 Posts in Your Area</h3>
     <ul>
       {{#each stuff}}
-      <h5>Title: {{title}}</h5>
-      <h5>Body: {{body}}</h5>
-      <h5>Category: {{category}}</h5>
+      <li>
+      <span>Title: {{title}}</span>
+      <span style="float:right">In: "{{category}}"</span>
+      <p style="color:white">{{body}}<p>
+      </li>
       {{/each}}
     </ul>
   </div>

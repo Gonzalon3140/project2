@@ -36,6 +36,14 @@ h3 {
   font-size: 20px;
 }
 
+h5{
+  font-size:16px;
+}
+
+p{
+  font-size: 14px;
+}
+
 div.col.s4 {
   border-style: solid;
   border-color: white;
@@ -44,4 +52,11 @@ div.col.s4 {
 
 .home-title {
   background: white;
+}
+
+#logoutbtn{
+  background-color:brown;
+  float:right;
+  color:whitesmoke;
+  margin-right: 20px;
 }

@@ -13,7 +13,7 @@ module.exports = function(app) {
   // });
 
   // Load home page
-  app.get("/home", authController.isLoggedIn, homController.getHomePage);
+  //app.get("/home", authController.isLoggedIn, homController.getHomePage);
   //app.get("/posts/:zip", authController.isLoggedin, homController.getZipPost);
   // Load category page - Kyle
   /*app.get("/category", function(req, res) {
@@ -22,26 +22,26 @@ module.exports = function(app) {
 
   
   //  LATEST WORKING HOME ROUTE
-  // app.get("/home", function (req, res) {
-  //   // get all user's posts
-  //   // currentzip = req.params.zip;
-  //   console.log("routed to home");
-  //   db.postTable.findAll().then(function (userposts) {
-  //     //console.log(userposts);
-  //     var stuff = [];
-  //     for (i = 0; i < userposts.length; i++) {
-  //       stuff.push(userposts[i].dataValues);
-  //     }
-  //     // var stuff={
-  //     //   title: "yo",
-  //     //   body: "right here"
-  //     // }
-  //     console.log(stuff);
-  //     res.render("home", {
-  //       stuff: stuff
-  //     });
-  //   });
-  // });
+  app.get("/home/:zip", authController.isLoggedIn, function (req, res) {
+    // get all user's posts
+    var currentzip = req.params.zip;
+    db.postTable.findAll().then(function (userposts) {
+      //console.log(userposts);
+      //var stuff = [{title:"",category:"",body:"",zip:""}];
+      for (i = 0; i < userposts.length; i++) {
+        var stuff=userposts[i].dataValues;
+        stuff.push(stuff);
+      }
+      // var stuff={
+      //   title: "yo",
+      //   body: "right here"
+      // }
+      console.log(stuff);
+      res.render("home", {
+        stuff: stuff
+      });
+    });
+  });
 
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {

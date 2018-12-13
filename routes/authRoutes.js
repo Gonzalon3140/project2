@@ -1,6 +1,7 @@
 var authController = require("../controllers/authController");
 
 module.exports = function(app, passport) {
+  
   app.get("/signup", authController.signup);
   app.get("/", authController.signin);
   app.get("/signin", authController.signin);
@@ -12,7 +13,6 @@ module.exports = function(app, passport) {
       failureRedirect: "/poop"
     })
   );
-
   app.post(
     "/signin",
     passport.authenticate("local-signin", {

@@ -6,6 +6,6 @@ exports.getHomePage = function(req, res) {
   res.render("home", { zip: zip, name: name });
 };
 
-// exports.getZipPost = function(req, res) {
-//   res.render("home", { name: req.params.zip });
-// };
+exports.getZipPost = function(req, res) {
+  res.render("home", { zip: req.params.zip });
+};
