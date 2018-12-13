@@ -1,0 +1,11 @@
+var exports = (module.exports = {});
+
+exports.getHomePage = function(req, res) {
+  var zip = req.user.dataValues.zipcode;
+  var name = req.user.dataValues.name;
+  res.render("home", { zip: zip, name: name });
+};
+
+// exports.getZipPost = function(req, res) {
+//   res.render("home", { name: req.params.zip });
+// };
