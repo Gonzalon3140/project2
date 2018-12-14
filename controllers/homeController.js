@@ -1,7 +1,7 @@
 var exports = (module.exports = {});
 
 exports.getHomePage = function(req, res) {
-  var zip = req.user.dataValues.zipcode;
+  var zip = req.user.dataValues.zip;
   var name = req.user.dataValues.name;
   res.render("home", { zip: zip, name: name });
 };

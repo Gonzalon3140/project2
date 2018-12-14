@@ -1,47 +1,37 @@
 var db = require("../models");
 var authController = require("../controllers/authController");
-var homController = require("../controllers/homController");
-module.exports = function(app) {
-  // Load index/log-in page
-  // app.get("/", function(req, res) {
-  //   res.render("index");
-  // });
+var homeController = require("../controllers/homeController");
 
-  // Load signup page
-  // app.get("/auth/signup", function(req, res) {
-  //   res.render("signup");
-  // });
-
-  // Load home page
-  //app.get("/home", authController.isLoggedIn, homController.getHomePage);
-  //app.get("/posts/:zip", authController.isLoggedin, homController.getZipPost);
-  // Load category page - Kyle
-  /*app.get("/category", function(req, res) {
-    res.render("category");
-  });*/
-
+module.exports = function(app,passport) {
   
-  //  LATEST WORKING HOME ROUTE
-  app.get("/home/:zip", authController.isLoggedIn, function (req, res) {
+   //LATEST WORKING HOME ROUTE
+  app.get("/home", authController.isLoggedIn, function (req, res) {
     // get all user's posts
-    var currentzip = req.params.zip;
-    db.postTable.findAll().then(function (userposts) {
+    var currentzip = req.user.zip;
+    var currentID = req.user.id;
+    var array2=[];var array=[];
+    db.postTable.findAll().then(function (posts) {
+      
       //console.log(userposts);
-      //var stuff = [{title:"",category:"",body:"",zip:""}];
-      for (i = 0; i < userposts.length; i++) {
-        var stuff=userposts[i].dataValues;
-        stuff.push(stuff);
-      }
-      // var stuff={
-      //   title: "yo",
-      //   body: "right here"
-      // }
-      console.log(stuff);
-      res.render("home", {
-        stuff: stuff
-      });
-    });
+      for (i = 0; i < posts.length; i++) {
+        var stuff=posts[i].dataValues;
+        array.push(stuff);
+        
+      };
+    });  
+    db.postTable
+      .findAll({where:{id:currentID}})
+      .then(function(userposts){
+        
+        for (i = 0; i < userposts.length; i++) {
+          var stuff=userposts[i].dataValues;
+          array2.push(stuff);
+          
+        };
+    })
+    res.render("home", {stuff:array2});
   });
+
 
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
@@ -60,4 +50,5 @@ module.exports = function(app) {
   app.get("*", function(req, res) {
     res.render("404");
   });
+
 };

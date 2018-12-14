@@ -1,8 +1,8 @@
-<h1 class="home-title">{{stuff.name}}'s Hood</h1>
-<form action="/logout" method="get">
-<input type="submit" class="btn secondary-btn" id="logoutbtn" value="Logout">
-</form>
-<h2>Feed For{{stuff.zip}}</h2>
+<h1 class="home-title">{{name}}'s Hood</h1>
+  <form class="logout" action="/logout" method="get">
+  <input type="submit" class="btn secondary-btn" id="logoutbtn" value="Logout">
+  </form>
+<h2>Feed For{{zip}}</h2>
 <div class="row home-row">
 
   {{!-- This is the left column to auto populate the 10 most recent posts for your area --}}
@@ -23,7 +23,7 @@
   <div class="col s4">
     <h3>Search Posts</h3>
     <!-- Modal Trigger -->
-    <a class="waves-effect waves-light btn modal-trigger float-right" href="#modal1">Search</a>
+    <a class="waves-effect waves-light btn modal-trigger float-right" href="#modal2">Find/Edit/Delete</a>
 
     <!-- Modal Structure -->
     <div id="modal2" class="modal modal-fixed-footer">
@@ -66,7 +66,7 @@
       </div>
 
       <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Submit</a>
+            <input type="submit" class="modal-close waves-effect waves-green btn-flat" value="Submit">
       </div>
     </div>
   </div>
@@ -75,18 +75,29 @@
   <div class="col s4">
     <h3>Your Posts</h3>
     <!-- Modal Trigger -->
-    <a class="waves-effect waves-light btn modal-trigger float-right" href="#modal1">Edit/New Post</a>
+    <div class="col s4">
+    <ul>
+      {{#each stuff}}
+      <li>
+      <span>Title: {{title}}</span>
+      <span style="float:right">In: "{{category}}"</span>
+      <p style="color:white">{{body}}<p>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+    <a class="waves-effect waves-light btn modal-trigger float-right" href="#modal1">New Post</a>
 
     <!-- Modal Structure -->
     <div id="modal1" class="modal modal-fixed-footer">
       <div class="modal-content">
-        <form class="col s12" method="post" action="/api/post">{{!-- form goes here --}}
+        <form class="col s12" id="userPost" method="post" action="/api/post">{{!-- form goes here --}}
           <div class="input-field col s12">
             <select name="category">
               <option value="">Choose your Category</option>
               <option value="Event">Event</option>
               <option value="Free">Free</option>
-              <option value="Report">Report (Roadwork, Suspicious Activity, etc)</option>
+              <option value="Report">Report</option>
               <option value="Sale">For Sale/Service Offered</option>
               <option value="Missed">Missed Connections</option>
             </select>
@@ -116,3 +127,18 @@
   </div>
 
 </div>
+{{!-- <script>
+  $(function(){
+    $('#userPost').on('submit', function(e){
+        e.preventDefault();
+        $.ajax({
+            url: "/api/post", //this is the submit URL
+            type: 'POST', //or POST
+            data: $('#userPost').serialize(),
+            success: function(data){
+                 alert('successfully submitted')
+            }
+        });
+    });
+  });
+</script> --}}

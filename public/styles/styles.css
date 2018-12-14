@@ -50,7 +50,7 @@ div.col.s4 {
   border-width: 1px;
 }
 
-.home-title {
+.home-title, .logout {
   background: white;
 }
 
