@@ -1,8 +1,12 @@
-<h1 class="home-title">{{name}}'s Hood</h1>
+<div class=home-header>
+  <h1 class="home-title">{{name}}'s Hood</h1>
   <form class="logout" action="/logout" method="get">
-  <input type="submit" class="btn secondary-btn" id="logoutbtn" value="Logout">
+      <input type="submit" class="logout btn secondary-btn" method="get" action="/logout" id="logoutbtn" value="Logout">
   </form>
-<h2>Feed For{{zip}}</h2>
+  <h2 class="feed">Feed For{{zip}}
+  </h2>  
+</div>
+
 <div class="row home-row">
 
   {{!-- This is the left column to auto populate the 10 most recent posts for your area --}}
@@ -21,9 +25,11 @@
 
   {{!-- This the the middle column for searching for other people's posts --}}
   <div class="col s4">
-    <h3>Search Posts</h3>
-    <!-- Modal Trigger -->
-    <a class="waves-effect waves-light btn modal-trigger float-right" href="#modal2">Find/Edit/Delete</a>
+    <div>
+      <!-- Modal Trigger -->
+      <a class="waves-effect waves-light btn modal-trigger float-right" href="#modal2">Search</a>
+      <h3>Search Posts</h3>
+    </div>
 
     <!-- Modal Structure -->
     <div id="modal2" class="modal modal-fixed-footer">
@@ -73,20 +79,28 @@
 
   {{!-- This is the right column that will include the modal for posting your own content and all your own posts --}}
   <div class="col s4">
-    <h3>Your Posts</h3>
-    <!-- Modal Trigger -->
-    <div class="col s4">
+    <div>
+      <!-- Modal Trigger -->
+      <a class="waves-effect waves-light btn modal-trigger float-right" href="#modal1">New Post</a>
+      <h3>Your Posts</h3>
+    </div>
+   
     <ul>
       {{#each stuff}}
       <li>
       <span>Title: {{title}}</span>
       <span style="float:right">In: "{{category}}"</span>
       <p style="color:white">{{body}}<p>
-      </li>
+      <form>
+      <input name="destroy" type="submit" method="destroy" action="/api/post/delete/{{id}}" id="removebtn" value="Remove">
+      <input name="edit" type="submit" method="put" action="/api/post/edit/{{id}}" id="editbtn" value="Edit">
+      <hr>
+      </form>
+      
       {{/each}}
     </ul>
   </div>
-    <a class="waves-effect waves-light btn modal-trigger float-right" href="#modal1">New Post</a>
+    
 
     <!-- Modal Structure -->
     <div id="modal1" class="modal modal-fixed-footer">
@@ -127,18 +141,3 @@
   </div>
 
 </div>
-{{!-- <script>
-  $(function(){
-    $('#userPost').on('submit', function(e){
-        e.preventDefault();
-        $.ajax({
-            url: "/api/post", //this is the submit URL
-            type: 'POST', //or POST
-            data: $('#userPost').serialize(),
-            success: function(data){
-                 alert('successfully submitted')
-            }
-        });
-    });
-  });
-</script> --}}

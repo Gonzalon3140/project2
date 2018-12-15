@@ -10,26 +10,24 @@ module.exports = function (app) {
   
   /*---------------PAGE-POPULATOR----------------*/
 
-
-
   // LOAD HOMEPAGE w/ all your posts and 10 most recent posts in your area
   // app.get("/api/user/:id", function (req, res) {
-  app.get("/api/posts/:id", function (req, res) {
-    // get all user's posts
-    var currentID = req.params.id;
-    db.userTable
-      .findAll({
-        where: {id: "1"}
-      })
-      .then(function (userposts) {
-        // console.log(userposts);
-        var result = {
-          userfeed: userposts[0].dataValues
-        };
-        console.log(result);
-        res.render("home", result);
-      });
-  });
+  // app.get("/api/posts/:id", function (req, res) {
+  //   // get all user's posts
+  //   currentID = req.params.id;
+  //   db.userTable
+  //     .findAll({
+  //       where: {id: "1"}
+  //     })
+  //     .then(function (userposts) {
+  //       // console.log(userposts);
+  //       var result = {
+  //         userfeed: userposts[0].dataValues
+  //       };
+  //       console.log(result);
+  //       res.render("home", result);
+  //     });
+  // });
 
   app.post("/api/users", function (req, res) {
     db.userTable
@@ -61,14 +59,14 @@ module.exports = function (app) {
       })
       .then(function (response) {
         // var result = response[0].dataValues
-        res.redirect("/home/:zip");
+        res.redirect("/home");
         console.log(response);
         // res.render("home", result);
       });
   });
 
   // UPDATE YOUR POST
-  app.put("/api/post", function (req, res) {
+  app.put("/api/post/edit/:id", function (req, res) {
     // Add code here to update a post using the values in req.body, where the id is equal to
     db.postTable
       .update({
@@ -85,60 +83,66 @@ module.exports = function (app) {
       });
   });
 
+  // DELETE ONE OF YOUR POSTS
+  // app.delete("/api/post/delete/:id", function (req, res) {
+  //   // Add sequelize code to delete a post where the id is equal to req.params.id, 
+  //   console.log("in delete route");
+  //   db.postTable.destroy({
+  //     where: {id: req.params.id}
+  //   }).then(function () {
+  //     res.redirect("/home");
+  //   });
+    
+  // });
+
   /*----------------COMMENT-MANAGER-----------------*/
 
 
   // CREATE A COMMENT
-  app.post("/api/comments", function (req, res) {
+  // app.post("/api/comments", function (req, res) {
 
-    // Add sequelize code for creating a post using req.body,
-    db.commentTable
-      .create({
-        body: req.body.body,
-        category: req.body.category
-      })
-      .then(function (response) {
-        // then return the result using res.json
-        res.json(response);
-      });
-  });
+  //   // Add sequelize code for creating a post using req.body,
+  //   db.commentTable
+  //     .create({
+  //       body: req.body.body,
+  //       category: req.body.category
+  //     })
+  //     .then(function (response) {
+  //       // then return the result using res.json
+  //       res.json(response);
+  //     });
+  // });
 
 
 
   // DELETE ONE OF YOUR COMMENTS
-  app.delete("/api/post", function (req, res) {
-    // Add sequelize code to delete a post where the id is equal to req.params.id, 
-    db.commentTable.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function (response) {
-      // then return the result using res.json
-      res.json(response);
-    });
-  });
+  // app.delete("/api/post", function (req, res) {
+  //   // Add sequelize code to delete a post where the id is equal to req.params.id, 
+  //   db.commentTable.destroy({
+  //     where: {
+  //       id: req.params.id
+  //     }
+  //   }).then(function (response) {
+  //     // then return the result using res.json
+  //     res.json(response);
+  //   });
+  // });
 
   // UPDATE YOUR COMMENT
-  app.put("/api/comments", function (req, res) {
+  // app.put("/api/comments", function (req, res) {
 
-    // Add code here to update a post using the values in req.body, where the id is equal to
-    db.commentTable
-      .update({
-        body: req.body.body
-      }, {
-        where: {
-          id: req.body.id
-        }
-      })
-      .then(function (response) {
-        // then return the result using res.json
-        res.json(response);
-      });
-  });
-
-
-
-
-
-
+  //   // Add code here to update a post using the values in req.body, where the id is equal to
+  //   db.commentTable
+  //     .update({
+  //       body: req.body.body
+  //     }, {
+  //       where: {
+  //         id: req.body.id
+  //       }
+  //     })
+  //     .then(function (response) {
+  //       // then return the result using res.json
+  //       res.json(response);
+  //     });
+  // });
 };
