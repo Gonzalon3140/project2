@@ -2,7 +2,7 @@
 var express = require("express");
 var exphbs = require("express-handlebars");
 var db = require("./models");
-//var keys = require("./config/keys");
+var keys = require("./config/keys");
 var passport = require("passport");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(express.static("public"));
 app.use(
-  session({ secret: "keyboard cat", resave: true, saveUninitialized: true })
+  session({ secret: keys.session.cookieKey, resave: true, saveUninitialized: true })
 );
 
 app.use(passport.initialize());
