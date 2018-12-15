@@ -45,17 +45,3 @@ module.exports = function (sequelize, DataTypes) {
   };
   return postTable;
 };
-
-
-// this allows us to create a created date for our table
-
-// var user = sequelize.define('user', {
-//   createdAt: {
-//     type: DataTypes.DATE,
-//     field: 'beginTime',
-//     defaultValue: sequelize.literal('NOW()')
-//   }
-// }, {
-//   timestamps: true,
-
-// });
