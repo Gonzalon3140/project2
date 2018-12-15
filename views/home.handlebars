@@ -1,9 +1,9 @@
 <div class=home-header>
-  <h1 class="home-title">{{name}}'s Hood</h1>
+  <h1 class="home-title">You're In Da Hood</h1>
   <form class="logout" action="/logout" method="get">
       <input type="submit" class="logout btn secondary-btn" method="get" action="/logout" id="logoutbtn" value="Logout">
   </form>
-  <h2 class="feed">Feed For{{zip}}
+  <h2 class="feed">Personal Homepage
   </h2>  
 </div>
 
@@ -92,7 +92,7 @@
       <span style="float:right">In: "{{category}}"</span>
       <p style="color:white">{{body}}<p>
       <form>
-      <input name="destroy" type="submit" method="destroy" action="/api/post/delete/{{id}}" id="removebtn" value="Remove">
+      <input name={{id}} type="submit" method="destroy" action="/api/post/delete/{{id}}" id="removebtn" value="Remove">
       <input name="edit" type="submit" method="put" action="/api/post/edit/{{id}}" id="editbtn" value="Edit">
       <hr>
       </form>
@@ -141,3 +141,18 @@
   </div>
 
 </div>
+<script>
+$(document).ready(function() {
+  var id = $(this)
+    .parent()
+    .attr("data-id");
+  $('#removebtn').on('click', function (id) {
+    return $.ajax({
+      url: "api/post/delete/"+id,
+      type: "DELETE"
+    });
+  }//.then(function () {refreshExamples()});
+});
+
+
+</script>
