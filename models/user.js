@@ -17,18 +17,14 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true
       // validate: {isEmail: true}
     },
+    zip: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: true
-    },
-    zipcode: {
-      type: DataTypes.INTEGER,
-      allowNull: true
     }
-    // thumbnail: {
-    //   type: DataTypes.STRING,
-    //   allowNull: true
-    // }
   });
 
   userTable.associate = function (models) {

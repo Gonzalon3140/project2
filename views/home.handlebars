@@ -1,5 +1,12 @@
-<h1 class="home-title">{{name}}'s User Homepage</h1>
-<h2><a href="/posts/{{zip}}">Feed For</a></h2>
+<div class=home-header>
+  <h1 class="home-title">{{name}}'s Hood</h1>
+  <form class="logout" action="/logout" method="get">
+      <input type="submit" class="logout btn secondary-btn" method="get" action="/logout" id="logoutbtn" value="Logout">
+  </form>
+  <h2 class="feed">Feed For{{zip}}
+  </h2>  
+</div>
+
 <div class="row home-row">
 
   {{!-- This is the left column to auto populate the 10 most recent posts for your area --}}
@@ -7,18 +14,22 @@
     <h3>Most Recent Top 10 Posts in Your Area</h3>
     <ul>
       {{#each stuff}}
-      <h5>Title: {{title}}</h5>
-      <h5>Body: {{body}}</h5>
-      <h5>Category: {{category}}</h5>
+      <li>
+      <span>Title: {{title}}</span>
+      <span style="float:right">In: "{{category}}"</span>
+      <p style="color:white">{{body}}<p>
+      </li>
       {{/each}}
     </ul>
   </div>
 
   {{!-- This the the middle column for searching for other people's posts --}}
   <div class="col s4">
-    <h3>Search Posts</h3>
-    <!-- Modal Trigger -->
-    <a class="waves-effect waves-light btn modal-trigger float-right" href="#modal1">Search</a>
+    <div>
+      <!-- Modal Trigger -->
+      <a class="waves-effect waves-light btn modal-trigger float-right" href="#modal2">Search</a>
+      <h3>Search Posts</h3>
+    </div>
 
     <!-- Modal Structure -->
     <div id="modal2" class="modal modal-fixed-footer">
@@ -61,27 +72,46 @@
       </div>
 
       <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Submit</a>
+            <input type="submit" class="modal-close waves-effect waves-green btn-flat" value="Submit">
       </div>
     </div>
   </div>
 
   {{!-- This is the right column that will include the modal for posting your own content and all your own posts --}}
   <div class="col s4">
-    <h3>Your Posts</h3>
-    <!-- Modal Trigger -->
-    <a class="waves-effect waves-light btn modal-trigger float-right" href="#modal1">Edit/New Post</a>
+    <div>
+      <!-- Modal Trigger -->
+      <a class="waves-effect waves-light btn modal-trigger float-right" href="#modal1">New Post</a>
+      <h3>Your Posts</h3>
+    </div>
+   
+    <ul>
+      {{#each stuff}}
+      <li>
+      <span>Title: {{title}}</span>
+      <span style="float:right">In: "{{category}}"</span>
+      <p style="color:white">{{body}}<p>
+      <form>
+      <input name="destroy" type="submit" method="destroy" action="/api/post/delete/{{id}}" id="removebtn" value="Remove">
+      <input name="edit" type="submit" method="put" action="/api/post/edit/{{id}}" id="editbtn" value="Edit">
+      <hr>
+      </form>
+      
+      {{/each}}
+    </ul>
+  </div>
+    
 
     <!-- Modal Structure -->
     <div id="modal1" class="modal modal-fixed-footer">
       <div class="modal-content">
-        <form class="col s12" method="post" action="/api/post">{{!-- form goes here --}}
+        <form class="col s12" id="userPost" method="post" action="/api/post">{{!-- form goes here --}}
           <div class="input-field col s12">
             <select name="category">
               <option value="">Choose your Category</option>
               <option value="Event">Event</option>
               <option value="Free">Free</option>
-              <option value="Report">Report (Roadwork, Suspicious Activity, etc)</option>
+              <option value="Report">Report</option>
               <option value="Sale">For Sale/Service Offered</option>
               <option value="Missed">Missed Connections</option>
             </select>
