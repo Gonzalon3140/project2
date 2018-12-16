@@ -141,18 +141,3 @@
   </div>
 
 </div>
-<script>
-$(document).ready(function() {
-  var id = $(this)
-    .parent()
-    .attr("data-id");
-  $('#removebtn').on('click', function (id) {
-    return $.ajax({
-      url: "api/post/delete/"+id,
-      type: "DELETE"
-    });
-  }//.then(function () {refreshExamples()});
-});
-
-
-</script>
