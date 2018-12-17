@@ -91,12 +91,13 @@
       <span>Title: {{title}}</span>
       <span style="float:right">In: "{{category}}"</span>
       <p style="color:white">{{body}}<p>
-      <form>
-      <input name={{id}} type="submit" method="destroy" action="/api/post/delete/{{id}}" id="removebtn" value="Remove">
-      <input name="edit" type="submit" method="put" action="/api/post/edit/{{id}}" id="editbtn" value="Edit">
-      <hr>
+      <form method="post" action="/api/post/delete/{{id}}">
+      <input name="delete" type="submit" id="editbtn" value="Remove">
       </form>
-      
+      <form method="post" action="/api/post/edit/{{id}}">
+      <input name="edit" type="submit" id="editbtn" value="Edit">
+      </form>
+      <hr>
       {{/each}}
     </ul>
   </div>

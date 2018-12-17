@@ -84,16 +84,15 @@ module.exports = function (app) {
   });
 
   // DELETE ONE OF YOUR POSTS
-  // app.delete("/api/post/delete/:id", function (req, res) {
-  //   // Add sequelize code to delete a post where the id is equal to req.params.id, 
-  //   console.log("in delete route");
-  //   db.postTable.destroy({
-  //     where: {id: req.params.id}
-  //   }).then(function () {
-  //     res.redirect("/home");
-  //   });
-    
-  // });
+  app.post("/api/post/delete/:id", function (req, res) {
+    // Add sequelize code to delete a post where the id is equal to req.params.id, 
+    console.log("in delete route");
+    db.postTable.destroy({
+      where: {id: req.params.id}
+    }).then(function () {
+      res.redirect("/home");
+    });
+  });
 
   /*----------------COMMENT-MANAGER-----------------*/
 
