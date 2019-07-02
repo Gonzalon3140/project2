@@ -1,10 +1,10 @@
-<div class=home-header>
+<div class="home-header">
   <h1 class="home-title">You're In Da Hood</h1>
   <form class="logout" action="/logout" method="get">
-      <input type="submit" class="logout btn secondary-btn" method="get" action="/logout" id="logoutbtn" value="Logout">
+    <input type="submit" class="logout btn secondary-btn" method="get" action="/logout" id="logoutbtn" value="Logout">
   </form>
   <h2 class="feed">Personal Homepage
-  </h2>  
+  </h2>
 </div>
 
 <div class="row home-row">
@@ -15,9 +15,9 @@
     <ul>
       {{#each stuff}}
       <li>
-      <span>Title: {{title}}</span>
-      <span style="float:right">In: "{{category}}"</span>
-      <p style="color:white">{{body}}<p>
+        <span>Title: {{title}}</span>
+        <span style="float:right">In: "{{category}}"</span>
+        <p style="color:white">{{body}}<p>
       </li>
       {{/each}}
     </ul>
@@ -70,9 +70,8 @@
         </div>
 
       </div>
-
       <div class="modal-footer">
-            <input type="submit" class="modal-close waves-effect waves-green btn-flat" value="Submit">
+        <input type="submit" class="modal-close waves-effect waves-green btn-flat" value="Submit">
       </div>
     </div>
   </div>
@@ -84,75 +83,98 @@
       <a class="waves-effect waves-light btn modal-trigger float-right" href="#modal1">New Post</a>
       <h3>Your Posts</h3>
     </div>
-   
+
     <ul>
       {{#each stuff}}
       <li>
-      <span>Title: {{title}}</span>
-      <span style="float:right">In: "{{category}}"</span>
-      <p style="color:white">{{body}}<p>
-      <form>
-      <input name={{id}} type="submit" method="destroy" action="/api/post/delete/{{id}}" id="removebtn" value="Remove">
-      <input name="edit" type="submit" method="put" action="/api/post/edit/{{id}}" id="editbtn" value="Edit">
-      <hr>
-      </form>
-      
-      {{/each}}
+        <span>Title: {{title}}</span>
+        <span style="float:right">In: "{{category}}"</span>
+        <p style="color:white">{{body}}<p>
+            <form method="post" action="/api/post/delete/{{id}}">
+              <input type="submit" id="deletebtn" class="btn btn-sm" value="Remove">
+            </form>
+            <a href="#modal3" class="modal-trigger btn btn-small" value={{id}} id="editbtn">Edit</a>
+            <hr>
+            {{/each}}
     </ul>
   </div>
-    
 
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal modal-fixed-footer">
-      <div class="modal-content">
-        <form class="col s12" id="userPost" method="post" action="/api/post">{{!-- form goes here --}}
-          <div class="input-field col s12">
-            <select name="category">
-              <option value="">Choose your Category</option>
-              <option value="Event">Event</option>
-              <option value="Free">Free</option>
-              <option value="Report">Report</option>
-              <option value="Sale">For Sale/Service Offered</option>
-              <option value="Missed">Missed Connections</option>
-            </select>
-            <label>Category Select</label>
-          </div>
-          {{!-- <div class="row">
+
+  <!-- Create Post Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <form class="col s12" id="userPost" method="post" action="/api/post">{{!-- form goes here --}}
+        <div class="input-field col s12">
+          <select name="category">
+            <option value="">Choose your Category</option>
+            <option value="Event">Event</option>
+            <option value="Free">Free</option>
+            <option value="Report">Report</option>
+            <option value="Sale">For Sale/Service Offered</option>
+            <option value="Missed">Missed Connections</option>
+          </select>
+          <label>Category Select</label>
+        </div>
+        {{!-- <div class="row">
             <div class="row"> --}}
-              <div class="input-field col s12">
-                <label for="textarea1">Title</label>
-                <input name="title" type="text" id="textarea1" class="materialize-input">
-              </div>
-            {{!-- </div>
+        <div class="input-field col s12">
+          <label for="textarea1">Title</label>
+          <input name="title" type="text" id="textarea1" class="materialize-input">
+        </div>
+        {{!-- </div>
           </div> --}}
-          {{!-- <div class="row">
+        {{!-- <div class="row">
             <div class="row"> --}}
-              <div class="input-field col s12">
-                <textarea type="text" name="body" id="textarea1" class="materialize-input"></textarea>
-                <label for="textarea1">Add details about your post</label>
-              </div>
-            {{!-- </div>
+        <div class="input-field col s12">
+          <textarea type="text" name="body" id="textarea1" class="materialize-input"></textarea>
+          <label for="textarea1">Add details about your post</label>
+        </div>
+        {{!-- </div>
           </div> --}}
-          <div class="modal-footer">
-            <input type="submit" class="modal-close waves-effect waves-green btn-flat" value="Submit">
-          </div>
-        </form>
+        <div class="modal-footer">
+          <input type="submit" class="modal-close waves-effect waves-green btn-flat" value="Submit">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Edit Modal Structure -->
+  <div id="modal3" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <form class="col s12" method="put" action="/api/post/edit/{{id}}">
+        <div class="input-field col s12">
+          <select name="category">
+            <option value="">Choose your Category</option>
+            <option value="Event">Event</option>
+            <option value="Free">Free</option>
+            <option value="Report">Report</option>
+            <option value="Sale">For Sale/Service Offered</option>
+            <option value="Missed">Missed Connections</option>
+          </select>
+          <label>Category Select</label>
+        </div>
+        {{!-- <div class="row">
+            <div class="row"> --}}
+        <div class="input-field col s12">
+          <label for="textarea1">Title</label>
+          <input name="title" type="text" id="textarea1" class="materialize-input">
+        </div>
+        {{!-- </div>
+          </div> --}}
+        {{!-- <div class="row">
+            <div class="row"> --}}
+        <div class="input-field col s12">
+          <textarea type="text" name="body" id="textarea1" class="materialize-input"></textarea>
+          <label for="textarea1">Add details about your post</label>
+        </div>
+        {{!-- </div>
+          </div> --}}
+        <div class="modal-footer">
+          <input type="submit" class="modal-close waves-effect waves-green btn-flat" value="Submit">
+        </div>
+      </form>
     </div>
   </div>
 
 </div>
-<script>
-$(document).ready(function() {
-  var id = $(this)
-    .parent()
-    .attr("data-id");
-  $('#removebtn').on('click', function (id) {
-    return $.ajax({
-      url: "api/post/delete/"+id,
-      type: "DELETE"
-    });
-  }//.then(function () {refreshExamples()});
-});
-
-
-</script>
+</div>

@@ -94,17 +94,7 @@ var handleDeleteBtnClick = function () {
   });
 };
 
-// Add event listeners to the submit and delete buttons
-// $submitBtn.on("click", handleFormSubmit);
-// $exampleList.on("click", ".delete", handleDeleteBtnClick);
-
-// $("#openCreatePost").on("click", function() {
-//   $("#createPost").css("display", "block")
-// })
-
-// $("#closeCreatePost").on("click", function() {
-//   $("#createPost").css("display", "none")
-// })
+// Modal Operations
 
 $(document).ready(function () {
   $('#modal1').modal();
@@ -112,6 +102,10 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('#modal2').modal();
+});
+
+$(document).ready(function () {
+  $('select').formSelect();
 });
 
 $(document).ready(function () {

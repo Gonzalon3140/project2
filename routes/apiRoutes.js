@@ -7,27 +7,9 @@ var passport = require("passport");
 module.exports = function (app) {
   var currentZip;
   var currentID;
-  
+
   /*---------------PAGE-POPULATOR----------------*/
 
-  // LOAD HOMEPAGE w/ all your posts and 10 most recent posts in your area
-  // app.get("/api/user/:id", function (req, res) {
-  // app.get("/api/posts/:id", function (req, res) {
-  //   // get all user's posts
-  //   currentID = req.params.id;
-  //   db.userTable
-  //     .findAll({
-  //       where: {id: "1"}
-  //     })
-  //     .then(function (userposts) {
-  //       // console.log(userposts);
-  //       var result = {
-  //         userfeed: userposts[0].dataValues
-  //       };
-  //       console.log(result);
-  //       res.render("home", result);
-  //     });
-  // });
 
   app.post("/api/users", function (req, res) {
     db.userTable
@@ -54,13 +36,12 @@ module.exports = function (app) {
         title: req.body.title,
         body: req.body.body,
         category: req.body.category,
-        expired:false,
-        expirationDate:moment().add(7,"d")
+        expired: false,
+        expirationDate: moment().add(7, "d")
       })
       .then(function (response) {
         // var result = response[0].dataValues
         res.redirect("/home");
-        console.log(response);
         // res.render("home", result);
       });
   });
@@ -70,30 +51,33 @@ module.exports = function (app) {
     // Add code here to update a post using the values in req.body, where the id is equal to
     db.postTable
       .update({
+        category: req.body.category,
         title: req.body.title,
-        body: req.body.body
+        body: req.body.body,
+        expired: false,
+        expirationDate: moment().add(7, "d")
       }, {
         where: {
           id: req.body.id
         }
       })
-      .then(function (response) {
-        // then return the result using res.json
-        res.json(response);
+      .then(function () {
+        res.direct("/home");
       });
   });
 
   // DELETE ONE OF YOUR POSTS
-  // app.delete("/api/post/delete/:id", function (req, res) {
-  //   // Add sequelize code to delete a post where the id is equal to req.params.id, 
-  //   console.log("in delete route");
-  //   db.postTable.destroy({
-  //     where: {id: req.params.id}
-  //   }).then(function () {
-  //     res.redirect("/home");
-  //   });
-    
-  // });
+  app.post("/api/post/delete/:id", function (req, res) {
+    // Add sequelize code to delete a post where the id is equal to req.params.id, 
+    console.log("in delete route");
+    db.postTable.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function () {
+      res.redirect("/home");
+    });
+  });
 
   /*----------------COMMENT-MANAGER-----------------*/
 
@@ -128,21 +112,5 @@ module.exports = function (app) {
   //   });
   // });
 
-  // UPDATE YOUR COMMENT
-  // app.put("/api/comments", function (req, res) {
 
-  //   // Add code here to update a post using the values in req.body, where the id is equal to
-  //   db.commentTable
-  //     .update({
-  //       body: req.body.body
-  //     }, {
-  //       where: {
-  //         id: req.body.id
-  //       }
-  //     })
-  //     .then(function (response) {
-  //       // then return the result using res.json
-  //       res.json(response);
-  //     });
-  // });
 };
